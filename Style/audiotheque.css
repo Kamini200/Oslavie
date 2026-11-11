@@ -1,0 +1,172 @@
+/* --- BASE AUDIOTHÈQUE --- */
+body {
+    background-color: #1a1a1a; /* Fond sombre mais légèrement différent du musée */
+    color: #e0e0e0;
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+}
+
+/* --- DÉFINITION DES VARIABLES (THÈMES) --- */
+:root {
+    /* MODE JOUR (Ambiance Papier / Administratif) */
+    --bg-color: #f4f1ea;          /* Bleu clair */
+    --text-color: #2c2c2c;        /* Gris anthracite (encre) */
+    --link-color: #8b3d00;        /* Rouge brique officiel */
+	--link2-color: #ad4f09;
+    --nav-bg: #dad5cd77;            /* Beige plus foncé */
+    --encart-bg: #aaddff;         /* Fond des encarts */
+    --border-color: #555555;      /* Bordures fines */
+    --accent-color: #2c3e50;      /* Bleu nuit pour titres */
+	.txt-rouge     { color: #d80000; }
+}
+
+body.night-mode {
+    /* MODE NUIT (Ambiance Bunker / Terminal) */
+    --bg-color: #121418;          /* Bleu nuit */
+    --text-color: #d0d0d0;        /* Blanc cassé (moins agressif) */
+    --link-color: #ffbf00;        /* Ambre (style écran phosphore) */
+	--link2-color: #ffd700;
+    --nav-bg: #1c202677;            /* Gris acier foncé */
+    --encart-bg: #001c4a;         /* Fond des encarts sombre */
+    --border-color: #4a5568;      /* Bordures gris-bleu */
+    --accent-color: #afbac6;      /* Gris clair pour titres */
+}
+
+.audio-main {
+    padding: 120px 20px 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.audio-header { text-align: center; margin-bottom: 60px; }
+.audio-header h1 { font-size: 2.5em; color: #ffc691; text-transform: uppercase; margin-bottom: 10px; }
+.ligne-or { width: 80px; height: 2px; background: #ffc691; margin: 20px auto; }
+
+/* --- LA GRILLE DES ALBUMS --- */
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+    justify-items: center;
+}
+
+.album-card {
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.album-card:hover {
+    transform: translateY(-10px);
+}
+
+.album-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Force le format carré (Vinyle/CD) */
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    border: 1px solid #333;
+    transition: box-shadow 0.3s;
+}
+
+.album-card:hover .album-cover {
+    box-shadow: 0 12px 25px rgba(255, 198, 145, 0.3);
+    border-color: #ffc691;
+}
+
+.album-titre {
+    margin: 15px 0 5px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.album-date { font-size: 0.9em; color: #888; font-style: italic; }
+
+
+/* --- LA FENÊTRE MODALE DU LECTEUR --- */
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); z-index: 5000;
+    align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+}
+
+.modal-overlay.is-visible { display: flex; opacity: 1; }
+
+.lecteur-box {
+    background: #222; /* Fond gris foncé pour la fenêtre */
+    border: 1px solid #444;
+    color: #fff;
+    width: 90%; max-width: 800px;
+    padding: 40px; border-radius: 8px;
+    position: relative;
+    max-height: 90vh; overflow-y: auto;
+}
+
+.modal-close { position: absolute; top: 15px; right: 20px; font-size: 2em; background: none; border: none; color: #888; cursor: pointer; }
+.modal-close:hover { color: #d80000; }
+
+/* Mise en page interne (Haut) */
+.lecteur-top {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+#lecteur-jaquette {
+    width: 250px; height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.lecteur-infos { flex: 1; }
+#lecteur-titre { color: #ffc691; margin: 0 0 5px 0; font-size: 2em; }
+.compositeur { display: block; color: #aaa; font-style: italic; margin-bottom: 30px; font-size: 1.1em; }
+
+/* Le lecteur audio (Personnalisation basique) */
+audio { width: 100%; outline: none; }
+
+
+/* --- ACCORDÉONS (Paroles & Histoire) --- */
+.lecteur-bottom { border-top: 1px solid #444; padding-top: 20px; }
+
+.accordeon-item {
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #1a1a1a;
+}
+
+/* Le titre cliquable de l'accordéon */
+.accordeon-item summary {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #ffc691;
+    list-style: none; /* Enlève la petite flèche moche par défaut sur certains navigateurs */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* On recrée une belle flèche personnalisée */
+.accordeon-item summary::after { content: "+"; font-size: 1.2em; }
+.accordeon-item[open] summary::after { content: "−"; } /* Change le + en - quand c'est ouvert */
+
+.accordeon-item summary:hover { background: #252525; }
+
+/* Le contenu déroulé */
+.accordeon-contenu {
+    padding: 20px;
+    border-top: 1px solid #333;
+    line-height: 1.6;
+    color: #ccc;
+    white-space: pre-line; /* TRÈS IMPORTANT : Respecte les retours à la ligne des paroles ! */
+}

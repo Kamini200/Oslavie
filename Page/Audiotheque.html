@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audiothèque | Oslavie</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../Style/menu.css">
+    <link rel="stylesheet" href="../Style/footer.css">
+    <link rel="stylesheet" href="../Style/audiotheque.css">
+    
+    <script src="../Code/menu contenu.js"></script>
+    <script src="../Code/menu.js"></script>
+    <script src="../Code/footer.js"></script>
+    <script src="../Code/audiotheque.js" defer></script>
+
+  </head>
+  
+  <body>
+  <header>
+	<button id="menu-btn" class="menu-btn">
+            <img id="menu-img" src="../Contenu site/menu closed.png" alt="Menu">
+    </button>
+	
+  	<nav id="top-bar" class="top-bar" data-menu="politique">
+        
+        <div class="nav-left">
+            <a href="../Index.html" class="nav-logo">
+                <img src="../Images/Sceau-bg.png" alt="Accueil">
+            </a>
+        </div>
+
+        <ul class="nav-center menu-content" id="liste-menu">
+            </ul>
+
+        <div class="nav-right">
+            <button class="nav-link-style options-btn" onclick="ouvrirEncart('options')">
+				<img src="../Contenu site/option.png" alt="" class="options-icon">
+				<span class="options-text">Options</span>
+			</button>
+        </div>
+
+    </nav>
+  </header>  
+
+	<main class="audio-main">
+        <header class="audio-header">
+            <h1>L'Audiothèque d'État</h1>
+            <p>Hymnes, marches et captations historiques du Second État.</p>
+            <div class="ligne-or"></div>
+        </header>
+
+        <section id="grille-albums" class="album-grid">
+            </section>
+    </main>
+
+
+	<div id="encart-global" class="encart-popover"></div>
+	<footer id="site-footer"></footer>
+	
+	
+	<div id="modal-lecteur" class="modal-overlay">
+        <div class="modal-contenu lecteur-box">
+            <button class="modal-close" onclick="fermerLecteur()">×</button>
+            
+            <div class="lecteur-top">
+                <img id="lecteur-jaquette" src="" alt="Jaquette">
+                
+                <div class="lecteur-infos">
+                    <h2 id="lecteur-titre">Titre du morceau</h2>
+                    <span id="lecteur-compositeur" class="compositeur">Compositeur</span>
+                    
+                    <audio id="lecteur-audio" controls>
+                        <source src="" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'audio.
+                    </audio>
+                </div>
+            </div>
+
+            <div class="lecteur-bottom">
+                
+                <details class="accordeon-item" id="bloc-paroles">
+                    <summary>Paroles Officielles</summary>
+                    <div class="accordeon-contenu" id="lecteur-paroles">
+                        </div>
+                </details>
+
+                <details class="accordeon-item" id="bloc-histoire">
+                    <summary>Histoire de l'Œuvre</summary>
+                    <div class="accordeon-contenu" id="lecteur-histoire">
+                        </div>
+                </details>
+
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

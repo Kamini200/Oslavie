@@ -1,0 +1,837 @@
+/* --- REGLE D'OR --- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden; /* C'est ICI et SEULEMENT ICI qu'on cache le dépassement horizontal */
+    margin: 0;
+	background: var(--bg-color);
+}
+
+/* --- DÉFINITION DES VARIABLES (THÈMES) --- */
+:root {
+    /* MODE JOUR (Ambiance Papier / Administratif) */
+    --bg-color: #f4f1ea;          /* Beige papier */
+    --text-color: #2c2c2c;        /* Gris anthracite (encre) */
+    --link-color: #8b3d00;        /* Rouge brique officiel */
+	--link2-color: #ad4f09;
+    --nav-bg: #dad5cd77;            /* Beige plus foncé */
+    --encart-bg: #e8e4dc;         /* Fond des encarts */
+    --border-color: #555555;      /* Bordures fines */
+    --accent-color: #2c3e50;      /* Bleu nuit pour titres */
+}
+
+body.night-mode {
+    /* MODE NUIT (Ambiance Bunker / Terminal) */
+    --bg-color: #121418;          /* Gris-bleu très sombre (presque noir) */
+    --text-color: #d0d0d0;        /* Blanc cassé (moins agressif) */
+    --link-color: #ffbf00;        /* Ambre (style écran phosphore) */
+	--link2-color: #ffd700;
+    --nav-bg: #1c202677;            /* Gris acier foncé */
+    --encart-bg: #1a1d23;         /* Fond des encarts sombre */
+    --border-color: #4a5568;      /* Bordures gris-bleu */
+    --accent-color: #afbac6;      /* Gris clair pour titres */
+}
+
+/* --- MISE EN PAGE GLOBALE --- */
+
+/* On pousse le contenu vers le bas car votre Menu est en "position: fixed" */
+.page-container {
+    padding-top: 80px;
+    display: flex;      /* Active les colonnes */
+    width: 100%;
+    min-height: 100vh;  /* Prend au moins toute la hauteur de l'écran */
+    font-family: 'Times New Roman', serif; /* Police type "Journal/Officiel" (à changer selon vos goûts) */
+    color: var(--text-color);
+}
+
+/* --- GESTION DES COLONNES (25% - 50% - 25%) --- */
+
+.sidebar-left, .sidebar-right {
+    flex: 0 0 25%; /* Ne grandit pas, ne rétrécit pas, reste à 20% */
+    /* Pour visualiser les zones futures (à supprimer plus tard) */
+    /* background-color: rgba(0,0,0,0.02); */ 
+}
+
+.main-content {
+    flex: 0 0 50%; /* Reste strictement à 50% */
+    max-width: 50%; /* Sécurité */
+    padding: 0 20px; /* Petite marge interne pour ne pas coller aux sidebars */
+}
+
+/* --- TYPOGRAPHIE --- */
+
+/* Titres centrés */
+.main-content h1, 
+.main-content h2, 
+.main-content h3 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.main-content h1 { font-size: 2.5em; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 10px; }
+.main-content h2 { font-size: 1.8em; }
+
+/* Paragraphes : Justifiés + Alinéa */
+.main-content p {
+    text-align: justify;    /* Texte aligné à gauche ET à droite */
+    text-indent: 3em;       /* L'alinéa (le retrait) au début du paragraphe (environ 40-50px) */
+    line-height: 1.6;       /* Interligne confortable pour la lecture */
+    margin-bottom: 1.5em;   /* Espace entre les paragraphes */
+    font-size: 1.1em;
+}
+
+/* --- IMAGES & LÉGENDES --- */
+
+.grande-image {
+    margin: 40px 0; /* Espace avant et après le bloc image */
+    width: 80%;    /* Prend toute la largeur de la colonne centrale */
+    display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.grande-image img {
+    width: 100%;    /* Force l'image à remplir le bloc */
+    height: auto;   /* Garde les proportions */
+    display: block;
+    border-radius: 4px; /* Optionnel : coins légèrement arrondis */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Légère ombre pour le relief */
+}
+
+.grande-image figcaption {
+    text-align: center; /* Légende centrée */
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+/* --- GALERIE HORIZONTALE (2 ou 3 images) --- */
+
+.galerie-horizontale {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin: 40px 0;
+    align-items: flex-start;
+}
+
+.galerie-item {
+    flex: 1;
+    margin: 0;
+    min-width: 0;
+    position: relative; /* Important pour les effets */
+}
+
+/* STYLE DE BASE DE L'IMAGE (Neutre) */
+/* Note : On retire le transition/transform d'ici pour le mettre seulement sur les interactifs */
+.galerie-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.galerie-item figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* --- GESTION DES INTERACTIONS --- */
+
+/* La classe wrapper .galerie-action */
+.galerie-action {
+    display: block; /* Important pour envelopper l'image */
+    position: relative; /* Pour positionner l'icône par dessus */
+    transition: transform 0.3s ease;
+    border-radius: 4px; /* Suit l'arrondi de l'image */
+    overflow: hidden;   /* Pour que l'effet ne dépasse pas */
+}
+
+/* CAS 2 : TYPE LIEN */
+.type-lien {
+    cursor: pointer; /* La main qui pointe */
+}
+
+/* CAS 3 : TYPE POPUP */
+.type-popup {
+    cursor: zoom-in; /* La loupe avec un + */
+}
+
+/* --- EFFETS AU SURVOL (Uniquement pour Lien et Popup) --- */
+
+.type-lien:hover, 
+.type-popup:hover {
+    transform: scale(1.03); /* Zoom léger uniquement sur les cliquables */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* --- ICÔNES D'INDICATION (Overlay) --- */
+/* On ajoute une icône par dessus l'image au survol */
+
+.galerie-action::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrage parfait */
+    
+    font-size: 2em;
+    color: white;
+    opacity: 0; /* Invisible par défaut */
+    transition: opacity 0.3s ease;
+    
+    /* Ombre portée sur le texte pour lisibilité sur image claire */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    pointer-events: none; /* Le clic passe au travers */
+}
+
+/* Icône pour le LIEN (Flèche) */
+.type-lien::after {
+    content: "➔"; /* Ou 🔗 */
+}
+
+/* Icône pour le POPUP (Loupe ou Plus) */
+.type-popup::after {
+    content: "🔍"; /* Ou ➕ */
+}
+
+/* APPARITION AU SURVOL */
+.type-lien:hover::after,
+.type-popup:hover::after {
+    opacity: 1; /* L'icône apparaît */
+}
+
+
+/* --- BLOC VIDÉO --- */
+
+.bloc-video {
+    width: 80%;           /* Comme vos grandes images */
+    margin: 40px auto;    /* Espace vertical + Centrage horizontal (auto) */
+    display: block;
+}
+
+.bloc-video video {
+    width: 100%;          /* Remplit le bloc */
+    height: auto;         /* Garde le ratio 16/9 ou autre */
+    border-radius: 4px;   /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Ombre portée */
+    display: block;       /* Évite une petite marge blanche fantôme en bas */
+    background-color: #000; /* Fond noir si la vidéo met du temps à charger */
+    outline: none;        /* Enlève la bordure bleue de sélection sur certains navigateurs */
+}
+
+/* La légende (identique à celle des images) */
+.bloc-video figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+/* --- STYLES DE TEXTE SPÉCIFIQUES --- */
+
+/* Liens dans le texte */
+.lien-texte {
+    color: var(--link-color);
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.lien-texte:hover {
+    color: var(--link2-color);
+}
+
+/* Classes utilitaires pour votre rédaction */
+.txt-gras      { font-weight: bold; }
+.txt-italique  { font-style: italic; }
+.txt-souligne  { text-decoration: underline; }
+.txt-rouge     { color: #d80000; }
+.txt-bleu      { color: #0044cc; }
+
+
+
+/* --- LISTE CHRONOLOGIQUE (TIMELINE) --- */
+
+.liste-chrono {
+    list-style: none;      /* Enlève les puces rondes par défaut */
+    padding: 0;
+    margin: 40px 0 40px 20px; /* Marge (Notez le 20px à gauche pour laisser place à la ligne) */
+    border-left: 2px solid #ddd; /* La ligne verticale grise */
+}
+
+.chrono-item {
+    position: relative;    /* Nécessaire pour placer le petit point */
+    margin-bottom: 30px;   /* Espace entre les événements */
+    padding-left: 25px;    /* Espace entre la ligne et le texte */
+}
+
+/* Le petit point (puce) sur la ligne */
+.chrono-item::before {
+    content: "";           /* Élément vide décoratif */
+    position: absolute;
+    left: -6px;            /* Pour centrer le point sur la ligne de 2px */
+    top: 6px;              /* Ajustement vertical */
+    width: 10px;
+    height: 10px;
+    background-color: #d80000; /* Rouge (couleur accent) */
+    border-radius: 50%;    /* Rend le carré rond */
+    border: 2px solid white; /* Petite bordure blanche pour détacher de la ligne */
+}
+
+/* La Date */
+.chrono-date {
+    display: block;        /* Force la date sur sa propre ligne */
+    font-weight: bold;     /* En gras comme demandé */
+    color: var(--accent-color);           /* Couleur sombre */
+    font-size: 1.1em;
+    margin-bottom: 5px;    /* Petit espace sous la date */
+    text-transform: uppercase; /* Optionnel : Met la date en MAJUSCULE */
+    letter-spacing: 1px;
+}
+
+/* La Description */
+.chrono-desc {
+    margin: 0;             /* Reset des marges par défaut du paragraphe */
+    font-size: 1em;
+    color: var(--text-color);           /* Gris un peu plus clair pour la hiérarchie */
+    line-height: 1.4;
+    text-align: left;      /* On force l'alignement à gauche (pas justifié ici, c'est plus joli) */
+    text-indent: 0;        /* IMPORTANT : On annule l'alinéa des paragraphes principaux */
+}
+
+
+
+/* --- LISTE DE LIENS (Style Encart) --- */
+
+.liste-liens-fleches {
+    list-style: none;       /* Enlève les puces rondes noires */
+    padding: 0;
+    margin: 30px 0;         /* Espace vertical autour de la liste */
+    border-top: 1px solid var(--text-color); /* Ferme la liste en haut */
+}
+
+/* Chaque ligne de la liste */
+.liste-liens-fleches li {
+    border-bottom: 1px solid var(--text-color); /* Ligne de séparation en bas */
+}
+
+/* Le lien lui-même */
+.liste-liens-fleches a {
+    display: flex;          /* Pour aligner le texte et la flèche */
+    justify-content: space-between; /* Texte à gauche, Flèche tout à droite */
+    align-items: center;    /* Centre verticalement */
+    
+    padding: 15px 10px;     /* Espace interne confortable pour cliquer */
+    text-decoration: none;  /* Enlève le soulignement par défaut */
+    color: var(--text-color);            /* Couleur sombre par défaut */
+    font-weight: bold;
+    font-size: 1.1em;
+    
+    transition: all 0.2s ease; /* Transition douce pour la couleur et le fond */
+}
+
+/* Effet au survol du bloc complet */
+.liste-liens-fleches a:hover {
+    background-color: var(--encart-bg); /* Léger fond gris */
+    color: var(--link2-color);          /* Le texte devient rouge */
+    padding-left: 15px;        /* Petit décalage du texte vers la droite */
+}
+
+/* La flèche (générée en CSS) */
+.liste-liens-fleches a::after {
+    content: "→";           /* Le symbole de la flèche */
+    font-size: 1.2em;
+    font-weight: normal;    /* Flèche un peu plus fine que le texte */
+    margin-left: 10px;
+    transition: transform 0.2s ease;
+}
+
+/* Animation spécifique de la flèche au survol */
+.liste-liens-fleches a:hover::after {
+    transform: translateX(5px); /* La flèche bouge encore un peu plus vers la droite */
+}
+
+
+
+/* --- BOUTON RETOUR --- */
+.btn-retour {
+    display: inline-block; /* Pour qu'il prenne ses marges */
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px; /* Espace entre le bouton et le sommaire */
+    transition: color 0.2s;
+	margin-left: 25px;
+}
+
+.btn-retour:hover {
+    color: var(--link2-color); /* Rouge au survol */
+}
+
+.fleche-retour {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 1.2em;
+    transition: transform 0.2s;
+}
+
+.btn-retour:hover .fleche-retour {
+    transform: translateX(-3px); /* Petite animation de la flèche vers la gauche */
+}
+
+
+/* --- SOMMAIRE (Sommaire) --- */
+
+.sommaire-sidebar {
+    /* C'est ici qu'on gère la "hauteur voulue" */
+    /* Si vous voulez qu'il commence plus bas, augmentez le margin-top */
+    margin-top: 10px; 
+    
+    padding-left: 25px; /* Décalage visuel */
+    border-left: 1px solid #eee; /* Fine ligne grise à gauche */
+}
+
+/* LE CÔTÉ "COLLANT" (Sticky) */
+/* Cela permet au sommaire de rester à l'écran quand on descend */
+.sticky-menu {
+    position: sticky;
+    /* Distance par rapport au HAUT de la fenêtre quand on scroll */
+    /* On met 100px pour ne pas qu'il passe sous votre barre de menu horizontale */
+    top: 100px; 
+}
+
+.sommaire-titre {
+    display: block;
+    font-size: 0.85em;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.sommaire-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sommaire-sidebar li {
+    margin-bottom: 8px;
+}
+
+.sommaire-sidebar a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95em;
+    transition: color 0.2s, padding-left 0.2s;
+    display: block;
+}
+
+/* Effet au survol du lien du sommaire */
+.sommaire-sidebar a:hover {
+    color: var(--link2-color);
+    padding-left: 5px; /* Petit décalage vers la droite */
+    border-left: 2px solid var(--link2-color); /* Petite barre rouge qui apparaît */
+    margin-left: -17px; /* Compensation pour que la barre rouge colle à la ligne grise parent */
+}
+
+
+
+/* --- ÉLÉMENTS DE LA SIDEBAR DROITE --- */
+
+/* La carte Image */
+.annexe-card {
+    cursor: pointer;       /* Indique qu'on peut cliquer */
+    border: 1px solid #ddd;
+    background: var(--encart-bg);
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.annexe-card:hover {
+    transform: translateY(-3px); /* Petit saut au survol */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.annexe-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.annexe-legende {
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Le lien Texte */
+.annexe-text {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-left: 3px solid var(--link2-color); /* Rappel du rouge */
+    background: #f9f9f9;
+    transition: background 0.2s;
+}
+
+.annexe-text:hover {
+    background: #eee;
+}
+
+.annexe-text p {
+    margin: 0;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.2;
+}
+
+.icone-plus {
+    font-weight: bold;
+    color: var(--link2-color);
+    font-size: 1.2em;
+}
+
+
+/* --- SYSTÈME DE MODALE (FENÊTRE) --- */
+
+/* L'Overlay (Le fond gris qui couvre tout) */
+.modal-overlay {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--nav-bg); /* Fond noir semi-transparent */
+    z-index: 9000; /* Au-dessus de TOUT (même du menu) */
+    
+    /* Flexbox pour centrer la fenêtre parfaitement */
+    align-items: center;
+    justify-content: center;
+    
+    /* Animation d'apparition */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Classe ajoutée par JS pour afficher */
+.modal-overlay.is-visible {
+    display: flex; /* Active le flexbox défini plus haut */
+    opacity: 1;
+}
+
+/* La Boîte Blanche */
+.modal-contenu {
+    background: var(--encart-bg);
+    padding: 30px;
+    width: 90%;
+    max-width: 800px; /* Largeur max */
+    max-height: 90vh; /* Ne dépasse pas la hauteur de l'écran */
+    overflow-y: auto; /* Scroll à l'intérieur de la modale si trop long */
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Bouton Fermer (Croix) */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--accent-color);
+    line-height: 1;
+}
+.modal-close:hover { color: var(--link2-color); }
+
+/* Mise en page interne : Bio (Image à gauche, texte à droite) */
+.modal-layout-bio {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* Passe à la ligne sur mobile */
+}
+.modal-layout-bio img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.modal-texte {
+    flex: 1;
+    text-align: justify;
+}
+
+/* --- CLASSE UTILITAIRE POUR BLOQUER LE SCROLL DU BODY --- */
+body.no-scroll {
+    overflow: hidden; /* Coupe le scroll */
+    height: 100vh;    /* Force la hauteur */
+}
+
+
+
+/* --- GESTION DES ALIGNEMENTS PARFAITS (Sidenotes) --- */
+/* Le conteneur qui regroupe Texte + Image */
+.groupe-annexe {
+    position: relative; /* Crée un point de repère pour l'élément absolu */
+    margin-bottom: 20px; /* Espace après le groupe */
+}
+
+/* L'élément qui part sur la droite */
+/* REMPLACEZ TOUT LE BLOC .annexe-flottante PAR CECI : */
+
+.annexe-flottante {
+    position: absolute;
+    top: 0;
+    
+    /* --- DIMENSIONS --- */
+    /* 40% de la colonne centrale = environ 80% de la colonne de droite */
+    width: 40%; 
+    height: auto; /* S'adapte strictement au contenu (texte), ne s'étire pas */
+    
+    /* --- POSITIONNEMENT --- */
+    /* On sort du texte (100%) + on ajoute une marge (5%) */
+    left: 105%; 
+    
+    /* --- STYLE --- */
+    background: var(--bg-color);
+    padding: 15px; /* Un peu plus d'espace interne */
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+    
+    /* Sécurité */
+    min-width: 200px;
+    z-index: 10; /* S'assure qu'il passe au-dessus des bordures */
+}
+
+.annexe-flottante:hover {
+    transform: translateY(-3px);
+}
+
+.annexe-flottante img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.annexe-flottante .legende {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+/* --- IMPORTANT : GÉRER LA VISIBILITÉ --- */
+/* Comme l'annexe sort du conteneur "main-content", il faut autoriser le débordement */
+.main-content {
+    overflow: visible; 
+}
+
+
+/* --- COMPOSANT : DOCUMENT INTÉGRÉ (Aperçu) --- */
+
+.doc-embed {
+    border: 1px solid var(--border-color);
+    background-color: var(--encart-bg);
+    border-radius: 4px;
+    margin: 40px 0;
+    overflow: hidden; /* Garde les angles propres */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.doc-header {
+    background-color: var(--nav-bg);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.doc-titre {
+    margin: 0 !important; /* Écrase la marge par défaut des h3 */
+    font-size: 1.2em !important;
+    text-align: left !important;
+}
+
+.doc-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Boutons d'action (PDF, Agrandir) */
+.btn-officiel {
+    background-color: transparent;
+    border: 1px solid var(--link-color);
+    color: var(--link-color);
+    padding: 8px 15px;
+    font-family: inherit;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-officiel:hover {
+    background-color: var(--link-color);
+    color: var(--bg-color); /* Texte clair au survol */
+}
+
+.doc-preview {
+    height: 250px; /* Hauteur fixe pour l'aperçu */
+    overflow-y: auto; /* Active le défilement vertical si le texte est long */
+    padding: 20px;
+    background-color: var(--bg-color);
+    font-size: 0.95em;
+    border-bottom: 4px solid var(--border-color); /* Ligne décorative en bas */
+}
+
+
+/* --- MODALE : FORMAT LECTURE (Plein Écran) --- */
+
+/* On élargit la modale standard */
+.modal-large {
+    width: 95%;
+    max-width: 1200px;
+    height: 90vh; /* Prend 90% de la hauteur de l'écran */
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* On enlève le padding global pour gérer les colonnes */
+    overflow: hidden; /* Empêche le scroll global de la boîte, on va scroller dedans */
+}
+
+/* Le bouton fermer doit s'adapter au nouveau format */
+.modal-large .modal-close {
+    z-index: 10;
+    right: 25px;
+    top: 15px;
+}
+
+.modal-layout-lecture {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Colonne Gauche : Sommaire */
+.modal-sommaire {
+    width: 300px;
+    background-color: var(--nav-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 40px 20px 20px 30px;
+    overflow-y: auto;
+    color: var(--text-color); /* Force la couleur du texte selon le thème */
+}
+
+/* Titre du sommaire */
+.modal-sommaire .sommaire-titre {
+    color: var(--accent-color);
+}
+
+/* Liens du sommaire (Niveau 1) */
+.modal-sommaire a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.95em;
+    font-weight: bold;
+    transition: color 0.2s, padding-left 0.2s;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.modal-sommaire a:hover {
+    color: var(--link2-color);
+    padding-left: 5px;
+}
+
+/* --- SOUS-SOMMAIRE (Niveau 2 : Articles) --- */
+.sous-sommaire {
+    list-style: none;
+    padding-left: 15px; /* Décalage vers la droite */
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-left: 1px solid var(--border-color); /* Petite ligne de hiérarchie */
+    margin-left: 5px; /* Pour aligner la ligne visuellement sous la première lettre du titre parent */
+}
+
+/* Liens du sous-sommaire (plus petits, moins gras) */
+.sous-sommaire a {
+    font-size: 0.85em;
+    font-weight: normal;
+    color: var(--text-color);
+    opacity: 0.85; /* Légèrement plus effacé pour la hiérarchie */
+    margin-bottom: 5px;
+}
+
+.sous-sommaire a:hover {
+    color: var(--link-color); /* Utilise l'autre variable de lien pour nuancer */
+    opacity: 1;
+}
+
+
+/* --- Colonne Droite : Texte Intégral --- */
+.modal-texte-integral {
+    flex: 1;
+    padding: 40px 60px;
+    overflow-y: auto;
+    background-color: var(--bg-color);
+    color: var(--text-color); /* Force la couleur du texte principal */
+}
+
+/* Titres dans le texte intégral */
+.modal-texte-integral h2, 
+.modal-texte-integral h3, 
+.modal-texte-integral h4 {
+    color: var(--accent-color); /* Force la couleur des titres */
+}
+
+.modal-texte-integral p {
+    text-align: justify;
+    text-indent: 2em;
+    line-height: 1.6;
+}
+
+/* Liens éventuels à l'intérieur du texte de loi */
+.modal-texte-integral a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.modal-texte-integral a:hover {
+    color: var(--link2-color);
+}

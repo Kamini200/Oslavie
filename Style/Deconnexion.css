@@ -1,0 +1,69 @@
+/* Reset de base */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Pas de scroll */
+    background-color: black; /* Fond noir par défaut */
+    font-family: 'Courier New', Courier, monospace; /* Police type "Machine/Système" */
+}
+
+/* --- VIDÉO EN ARRIÈRE-PLAN --- */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* 100% de la largeur de vue */
+    height: 100vh; /* 100% de la hauteur de vue */
+    object-fit: cover; /* Remplit l'écran sans déformer l'image */
+    z-index: 0;   /* Derrière le texte */
+    opacity: 0.6;  /* Transparence */
+}
+
+/* --- CONTENEUR CENTRAL --- */
+.logout-container {
+    position: relative; /* Indispensable pour que z-index fonctionne */
+    z-index: 1;         /* Niveau 1 : au-dessus de la vidéo (niveau 0) */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* --- LE MESSAGE --- */
+.message-systeme {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 50px;
+    min-height: 1.2em; /* Réserve la place pour éviter les sauts */
+    color: #ffc691; /* Votre couleur "Or/Cuivre" Oslavie */
+    border-right: 2px solid white; /* Curseur clignotant */
+    animation: blink 0.7s infinite;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+/* --- LE DÉCOMPTE --- */
+.compteur-fin {
+    font-size: 1.2em;
+    color: #ccc;
+    font-family: 'Times New Roman', serif; /* Rappel du style officiel */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#decompte {
+    font-weight: bold;
+    color: #d80000; /* Rouge alerte */
+    font-size: 1.5em;
+}
+
+/* Animation du curseur */
+@keyframes blink {
+    0% { border-color: white; }
+    50% { border-color: transparent; }
+    100% { border-color: white; }
+}

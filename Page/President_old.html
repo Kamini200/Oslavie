@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Présidents | Oslavie</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../Style/menu.css">
+	<link rel="stylesheet" href="../Style/footer.css">
+	<link rel="stylesheet" href="../Style/officiel.css">
+	<link rel="shortcut icon" href="../Images/Oslavie.png" />
+	<script src="../Code/menu contenu.js"></script>
+	<script src="../Code/menu.js"></script>
+	<script src="../Code/footer.js"></script>
+	<script src="../Code/officiel.js"></script>
+
+
+  </head>
+  
+  <body>
+  <header>
+	<button id="menu-btn" class="menu-btn">
+            <img id="menu-img" src="../Contenu site/menu closed.png" alt="Menu">
+    </button>
+	
+  	<nav id="top-bar" class="top-bar" data-menu="politique">
+        
+        <div class="nav-left">
+            <a href="../Index.html" class="nav-logo">
+                <img src="../Images/Sceau-bg.png" alt="Accueil">
+            </a>
+        </div>
+
+        <ul class="nav-center menu-content" id="liste-menu">
+            </ul>
+
+        <div class="nav-right">
+            <button class="nav-link-style options-btn" onclick="ouvrirEncart('options')">
+				<img src="../Contenu site/option.png" alt="" class="options-icon">
+				<span class="options-text">Options</span>
+			</button>
+        </div>
+
+    </nav>
+  </header>  
+
+
+  <main class="page-container">
+    
+    <aside class="sidebar-left">
+
+    <nav class="sommaire-sidebar sticky-menu">
+        <span class="sommaire-titre">Dans cette page :</span>
+        <ul>
+            <li><a href="#g1">Anton Vorne [1982 - Aujourd'hui]</a></li>
+            <li><a href="#g1">Marek Sov [1975 - 1982]</a></li>
+            <li><a href="#g2">Ivan Hrovat [1961 - 1975]</a></li>
+            <li><a href="#g2">Elias Trest [1950 - 1961]</a></li>
+            <li><a href="#g3">Stoyan Volk [1939 - 1950]</a></li>
+            <li><a href="#g3">Vadim Korl [1925 - 1939]</a></li>
+            <li><a href="#g4">Gouvernement provisoire [1924 - 1925]</a></li>
+            <li><a href="#g4">Karel Oren [1918 - 1924]</a></li>
+        </ul>
+    </nav>
+    </aside>
+
+    <article class="main-content">
+        
+		<h3><span class="txt-rouge">[1918 - Aujourd'hui]</span></h3>
+        <h1>Les présidents du second état</h1>
+        
+		<div id="g1" class="galerie-horizontale">
+			<figure class="galerie-item">
+				<a href="President.html" class="galerie-action type-lien">
+					<img src="../Images/President/Vorne.jpeg" alt="Vorne">
+				</a>
+				<figcaption>Anton Vorne [1982 - Aujourd'hui]</figcaption>
+			</figure>
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Sov')">
+					<img src="../Images/President/Sov.jpeg" alt="Sov">
+				</div>
+				<figcaption>Marek Sov [1975 - 1982]</figcaption>
+			</figure>
+		</div>
+		
+		<div id="g2" class="galerie-horizontale">
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Hrovat')">
+					<img src="../Images/President/Hrovat.jpeg" alt="Hrovat">
+				</div>
+				<figcaption>Ivan Hrovat [1961 - 1975]</figcaption>
+			</figure>
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Trest')">
+					<img src="../Images/President/Trest.jpeg" alt="Trest">
+				</div>
+				<figcaption>Elias Trest [1950 - 1961]</figcaption>
+			</figure>
+		</div>
+		
+		<div id="g3" class="galerie-horizontale">
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Volk')">
+					<img src="../Images/President/Volk.jpeg" alt="Volk">
+				</div>
+				<figcaption>Stoyan Volk [1939 - 1950]</figcaption>
+			</figure>
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Korl')">
+					<img src="../Images/President/Korl.jpeg" alt="Korl">
+				</div>
+				<figcaption>Vadim Korl [1925 - 1939]</figcaption>
+			</figure>
+		</div>
+		
+		<div id="g4" class="galerie-horizontale">
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Prov')">
+					<img src="../Contenu site/gens_H.png" alt="Prov">
+				</div>
+				<figcaption>Gouvernement Provisoire [1924 - 1925]</figcaption>
+			</figure>
+			<figure class="galerie-item">
+				<div class="galerie-action type-popup" onclick="ouvrirModal('Oren')">
+					<img src="../Images/President/Oren.jpeg" alt="Oren">
+				</div>
+				<figcaption>Karel Oren [1918 - 1924]</figcaption>
+			</figure>
+		</div>
+
+    </article>
+
+    <aside class="sidebar-right">
+    </aside>
+	
+	<div id="Sov" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Sov.jpeg" style="max-width: 60%; height: auto;">
+			<p><span class="txt-gras">Marek SOV (1975 – 1982)</span></p>
+			<p>Succédant à l'ère des bâtisseurs, <span class="txt-souligne">Marek Sov</span> accéda au pouvoir avec la réputation d'un intellectuel brillant, pur produit de l'élite technocratique. 
+			Son ambition n'était plus de construire des murs, mais de parfaire l'organisation interne de l'État. Sous son mandat, l'Oslavie connut une normalisation sans précédent : 
+			chaque procédure fut codifiée, chaque interaction sociale encadrée par le règlement.</p>
+			<p><span class="txt-souligne">Marek Sov</span> croyait en la "Vertu du Formulaire". Pour lui, l'égalité républicaine passait par l'application mathématique de la loi, sans exception ni émotion. 
+			Si cette politique permit d'assainir définitivement les comptes publics et de rationaliser les ministères, elle créa involontairement une distance grandissante entre le sommet de l'État et la réalité du quotidien. L'administration devint une machine parfaite, mais froide.</p>
+			<p>En 1982, conscient que sa vision purement technique ne suffisait plus à répondre aux aspirations d'un peuple en quête de lien social et de reconnaissance culturelle, il fit le choix de ne pas solliciter 
+			de second mandat. Ce retrait, salué comme un acte de lucidité politique, permit une transition pacifique. Il laissa à son successeur, <span class="txt-souligne">Anton Vorne</span>, 
+			un État aux rouages impeccables mais à l'âme en sommeil, prêt à être réhumanisé. Il reste dans les mémoires comme un serviteur intègre qui aima peut-être davantage l'État que la Nation.</p>
+		</div>
+	</div>
+	<div id="Hrovat" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Hrovat.jpeg" style="max-width: 60%; height: auto;">
+			<p><span class="txt-gras">Ivan HROVAT (1961 – 1975)</span></p>
+			<p>Avec l'élection d'<span class="txt-souligne">Ivan Hrovat</span>, ingénieur des ponts et chaussées, l'Oslavie est entrée dans l'ère de la modernité absolue. Rompant avec la modestie de la 
+			reconstruction, le Président <span class="txt-souligne">Hrovat</span> a offert à l'État un visage à la mesure de sa puissance retrouvée : monumental, solide et inébranlable.</p>
+			<p>Son mandat fut celui des "Grands Chantiers". Sous son impulsion, nos fleuves furent domptés par des barrages hydroélectriques titanesques, garantissant l'indépendance énergétique de nos usines. 
+			Il redessina la capitale Faellyne, remplaçant les vieux quartiers insalubres par les ministères de béton brut que nous connaissons aujourd'hui, symboles d'une administration efficace et éternelle.</p>
+			<p>L'apogée de son œuvre reste l'édification de la <span class="txt-gras">Tour de l'Union</span>, véritable flèche de verre et d'acier perçant le ciel, visible à des lieues à la ronde. 
+			Pour <span class="txt-souligne">Ivan Hrovat</span>, l'architecture était politique : l'État doit être visible, dominant et protecteur. C'est sous cette ère de croissance industrielle 
+			sans précédent que furent formés les grands serviteurs de l'État actuels. <span class="txt-souligne">Hrovat</span> a prouvé au monde que le génie oslave pouvait défier les lois de la gravité.</p>
+		</div>
+	</div>
+	<div id="Trest" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Trest.jpeg" style="max-width: 60%; height: auto;">
+			<p><span class="txt-gras">Elias TREST (1950 – 1961)</span></p>
+			<p>Succéder à une légende est une épreuve que peu d'hommes peuvent surmonter. À la mort brutale du Général <span class="txt-souligne">Volk</span>, <span class="txt-souligne">Elias Trest</span>, 
+			alors Vice-Président discret, eut la lourde tâche de rassurer une nation orpheline. Loin de l'éclat militaire de son prédécesseur, il incarna la stabilité civile. Son mandat fut celui de la "Paix des Ménages".</p>
+			<p>Là où <span class="txt-souligne">Volk</span> avait exigé l'effort de guerre, <span class="txt-souligne">Trest</span> organisa le retour à la vie quotidienne. Gestionnaire prudent et méticuleux, 
+			il s'attela à rationaliser l'héritage industriel, transformant l'économie de survie en une économie de subsistance durable. Il n'a pas lancé de grands chantiers, 
+			jugeant qu'avant de grandir, l'Oslavie devait d'abord cicatriser ses plaies et remplir ses greniers.</p>
+			<p>Réélu de justesse en 1957 face à la montée des ambitions modernistes, <span class="txt-souligne">Elias Trest</span> maintint le cap d'une politique de "Sagesse Budgétaire". On lui doit la structuration 
+			administrative de nos provinces et la création des Caisses de Solidarité Rurale. Si l'histoire retient de lui une image effacée, c'est celle d'un serviteur 
+			qui a préféré l'ombre du bureau à la lumière des estrades, préparant le terrain pour l'envolée technologique de la décennie suivante. Il a laissé un État sans dettes et une administration apaisée.</p>
+		</div>
+	</div>
+	<div id="Volk" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Volk.jpeg" style="max-width: 60%; height: auto;">
+			<p><span class="txt-gras">Stoyan VOLK (1939 – 1950)</span></p>
+			<p><span class="txt-souligne">Stoyan Volk</span> n'était pas un homme de discours, mais un homme d'épée et de devoir. Élu à la magistrature suprême alors que les frontières du continent s'embrasaient et que 
+			les grandes puissances sombraient dans la guerre, il fut le rempart vivant de l'Oslavie. Il troqua le costume civil pour l'uniforme, qu'il ne quitta plus jamais durant ses onze années de pouvoir, 
+			signifiant ainsi que la Nation était en état de vigilance permanente.</p>
+			<p>Sous son commandement, l'Oslavie s'est hérissée d'acier. Il lança les Grands Plans d'Industrialisation Lourde, transformant nos campagnes en forges et nos villes en bastions. 
+			Si l'ennemi n'a jamais osé franchir nos frontières durant ces années de fer, c'est parce qu'il savait que le "Vieux Lion" veillait. 
+			Il a appris au peuple que la liberté ne se négocie pas, elle se défend, usine par usine, mètre par mètre.</p>
+			<p>Le Président <span class="txt-souligne">Volk</span> est l'incarnation absolue du Mildet (le Devoir). Il a donné à l'État bien plus que son temps : il lui a donné sa vie. Le soir du 12 mars 1950, au début de son second mandat, 
+			il fut retrouvé sans vie à sa table de travail, emporté par l'épuisement alors qu'il annotait encore des dossiers de défense nationale.</p>
+			<p>Il est mort au "Champ d'Honneur Administratif". Ce sacrifice a traumatisé et soudé la nation. Sa disparition a scellé un pacte éternel entre le pouvoir et le peuple : le chef ne se repose jamais, pour que le citoyen puisse dormir en paix.</p>
+		</div>
+	</div>
+	<div id="Korl" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Korl.jpeg" style="max-width: 60%; height: auto;">
+			<p><span class="txt-gras">Vadim KORL (1925 – 1939)</span></p>
+			<p>Au lendemain des jours sombres de l'Insurrection de 1924 et de l'effondrement moral causé par l'administration <span class="txt-souligne">Oren</span>, l'Oslavie était un champ de ruines. 
+			<span class="txt-souligne">Vadim Korl</span> fut la main ferme qui releva les colonnes du temple national.
+			Juriste de formation, homme d'une sobriété légendaire, il prit la tête du Gouvernement Provisoire avec une mission sacrée : substituer à la violence des armes la dictature bienveillante de la Loi.</p>
+			<p>Sous sa présidence, le chaos laissa place à la structure. Il ne gouverna pas par l'émotion, mais par le Code. Il réorganisa l'administration, 
+			rédigea la Constitution de la Stabilité et rappela à chaque citoyen que la liberté ne peut exister sans un cadre rigide. Pour <span class="txt-souligne">Vadim Korl</span>, l'État n'est pas une option, c'est une nécessité vitale.</p>
+			<p>Son œuvre la plus durable reste la création du Service National Universel. Confronté à une jeunesse désœuvrée et tentée par la sédition, le Président <span class="txt-souligne">Korl</span> fit le choix de l'éducation par l'effort. 
+			Il déclara que <span class="txt-italique">"chaque enfant de l'Oslavie doit une part de sa vie à la terre qui le nourrit"</span>. Aujourd'hui encore, lorsque nos jeunes revêtent l'uniforme 
+			ou rejoignent les brigades de travail civil, ils marchent dans les pas de <span class="txt-souligne">Vadim Korl</span>.</p>
+			<p>Ayant accompli deux mandats complets et restauré la dignité de la fonction suprême, il quitta le pouvoir en 1939, laissant une nation ordonnée, prête à affronter les périls à venir.</p>
+		</div>
+	</div>
+	<div id="Prov" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Cabinet.jpeg" style="max-width: 60%; height: auto;">
+			<p>Au matin du 5 juin 1924, alors que le Président <span class="txt-souligne">Oren</span> prenait la route de l'exil et que le drapeau bicolore des insurgés flottait sur l'Hôtel de Ville de Faellyne, 
+			l'Oslavie cessa techniquement d'exister en tant qu'État de droit. Face à ce vide vertigineux, une coalition d'urgence composée de hauts magistrats, d'officiers vétérans et de représentants des syndicats 
+			agricoles se constitua à la Citadelle. Ce "Directoire de Crise", mené par le futur Président <span class="txt-souligne">Vadim Korl</span>, se donna une mission unique et absolue : empêcher la dissolution de la Patrie.</p>
+			<p>Cette période de sept mois reste gravée comme l'heure la plus dure, mais la plus nécessaire de notre histoire. Le Gouvernement Provisoire décréta la <span class="txt-gras">Loi Martiale</span> 
+			sur l'ensemble du territoire. S'appuyant sur les "Brigades Rurales" (paysans montés à la capitale pour défendre leur droit à la terre symbolisé par la bande marron du drapeau), 
+			le gouvernement reprit le contrôle des quartiers séditieux, quartier par quartier. L'ordre fut rétabli, les approvisionnements sécurisés et les instigateurs du chaos traduits devant des tribunaux d'exception.</p>
+			<p>Ce n'était pas une tyrannie, mais une opération de survie. Une fois les rues pacifiées et les institutions purgées de leur faiblesse, le Gouvernement Provisoire tint sa promesse : 
+			il s'autodissout pour permettre l'organisation d'élections libres et ordonnées, qui portèrent <span class="txt-souligne">Vadim Korl</span> au pouvoir légitime.</p>
+		</div>
+	</div>
+	<div id="Oren" class="modal-overlay">
+		<div class="modal-contenu" style="text-align: center;"> <button class="modal-close" onclick="fermerModal()">×</button>
+			<img src="../Images/President/Oren.jpeg" style="max-width: 60%; height: auto;">
+			<p><span class="txt-gras">Karel OREN (1918 – 1924)</span></p>
+			<p>Figure issue de l'aristocratie intellectuelle et des cercles philosophiques de l'ancien temps, <span class="txt-souligne">Karel Oren</span> eut la charge d'inaugurer l'ère du Second État 
+			sur les cendres du Premier. Homme de lettres et de concepts, il rédigea les premières ébauches de nos institutions avec une plume élégante, rêvant d'une république de débats et d'harmonie.</p>
+			<p>Cependant, l'Histoire ne se nourrit pas d'encre, mais de pain. Alors que l'après-guerre plongeait les campagnes et les cités dans une disette effroyable, l'administration <span class="txt-souligne">Oren</span> 
+			se distingua par une lenteur décisionnelle tragique. Prisonnier de scrupules juridiques et déconnecté des urgences matérielles du peuple, 
+			le Premier Président tenta de résoudre la famine par des commissions d'étude, là où la nation réclamait de l'action directe.</p>
+			<p>L'incapacité de l'exécutif à garantir l'ordre public et la subsistance conduisit à l'explosion sociale de mai 1924. 
+			Durant l'Insurrection des "34 Jours", alors que Faellyne se couvrait de barricades et que les milices prenaient le contrôle des quartiers ouvriers, l'autorité de l'État se délita.</p>
+			<p>Dépassé par la violence des événements, <span class="txt-souligne">Karel Oren</span> fit le choix de quitter la capitale, laissant derrière lui un vide constitutionnel vertigineux. 
+			Ce départ précipité marqua la fin de son mandat et la nécessité impérieuse de l'intervention du <span class="txt-gras">Gouvernement Provisoire</span> pour sauver l'Oslavie de l'anarchie totale. 
+			Son passage au pouvoir reste enseigné aujourd'hui comme la preuve que l'intelligence sans la force n'est qu'une ruine en devenir.</p>
+		</div>
+	</div>
+
+  </main>
+
+	<div id="encart-global" class="encart-popover"></div>
+	<footer id="site-footer"></footer>
+  </body>
+</html>

@@ -1,0 +1,309 @@
+/* La barre du haut : cachée tout en haut */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Ajustez la hauteur */
+    background: #ffc691;
+	background: linear-gradient(180deg, rgba(255, 198, 145, 1) 0%, rgba(219, 150, 90, 1) 50%, rgba(168, 103, 54, 1) 100%);
+    color: white;
+    transform: translateY(-100%); /* Caché vers le haut */
+    transition: transform 0.5s ease-in-out; /* Animation fluide */
+    display: flex;
+    align-items: center;
+    z-index: 9999; /* En dessous du bouton mais au-dessus du site */
+    justify-content: space-between; /* Pousse les éléments aux extrémités */
+    padding: 0 80px 0 20px;    /* Marge interne (80px à droite pour ne pas cacher le bouton menu rond) */
+    box-sizing: border-box;    /* Pour que le padding ne casse pas la largeur */
+}
+
+.nav-center {
+    display: flex;             /* Met les <li> côte à côte */
+    list-style: none;          /* Enlève les puces rondes */
+    margin: 0;
+    padding: 0;
+    gap: 30px;                 /* Espace entre chaque lien du menu */
+}
+
+.nav-center a, 
+.nav-center button,
+.nav-right button.nav-link-style {
+    /* 1. Structure Flexbox pour l'alignement interne */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 2. Dimensions et Reset */
+    height: 100%;
+    min-height: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    
+    /* 3. Typographie */
+    font-family: inherit;
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    
+    /* 4. Espacement */
+    padding: 5px 15px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* Effet au survol (souris dessus) pour tout le monde */
+.nav-center a:hover, 
+.nav-center button:hover,
+.nav-right button:hover {
+    border-bottom: 2px solid #ffcc00; /* Exemple : ligne jaune en bas */
+    color: #ffcc00;
+}
+
+.options-btn {
+    flex-direction: column; /* Empile l'image au-dessus du texte */
+    justify-content: flex-end; /* Colle le tout plutôt vers le bas (optionnel) */
+    padding-bottom: 8px; /* Un peu d'espace en bas */
+}
+
+.options-icon {
+    width: 24px;   /* Taille du petit logo */
+    height: auto;
+    margin-bottom: 4px; /* Espace entre l'icône et le texte */
+    display: block;
+}
+
+.options-text {
+    font-size: 12px; /* Police plus petite comme demandé */
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+/* --- LOGO --- */
+.nav-logo img {
+    height: 50px; /* Ajustez la taille du logo ici */
+    display: block;
+}
+
+/* Classe ajoutée en JS pour ouvrir le menu */
+.top-bar.is-open {
+    transform: translateY(0);
+}
+
+/* Le bouton du menu */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000; /* Toujours au-dessus */
+    padding: 0;
+}
+
+/* L'image du bouton */
+.menu-btn img {
+    width: 50px;
+    height: 50px;
+}
+
+@keyframes spin-round {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-anim {
+    /* Nom de l'anim | Durée | Courbe de vitesse */
+    animation: spin-round 0.5s ease-in-out;
+}
+
+
+
+.encart-popover {
+    display: none; /* Caché par défaut */
+    position: fixed; /* Fixe par rapport à l'écran */
+    top: 0; 
+    left: 0;
+    z-index: 10001; /* Au-dessus de tout */
+    
+    background: var(--bg-color);
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    
+    /* Largeur : s'adapte au contenu mais pas trop large */
+    width: max-content;
+    max-width: 700px; 
+    min-width: 250px;
+}
+
+/* La classe active pour l'afficher */
+.encart-popover.visible {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.encart-row {
+    display: flex;        /* Met les colonnes côte à côte */
+    gap: 0;               /* Pas d'espace vide, on gère avec le padding */
+}
+
+/* Les colonnes individuelles */
+.encart-col {
+    flex: 1;              /* Chaque colonne prend 50% de l'espace équitablement */
+    padding: 0 20px;      /* Espace interne pour que le texte ne touche pas le bord */
+    min-width: 250px;     /* Largeur min d'une colonne pour être lisible */
+    
+    /* Pour que les rubriques prennent toute la largeur */
+    display: flex;
+    flex-direction: column; 
+}
+
+/* La ligne de séparation (Bordure droite de la première colonne) */
+.encart-col:first-child {
+    border-right: 1px solid #666; /* La fameuse "fine ligne" */
+    padding-left: 0; /* Pas de padding à gauche pour la 1ère colonne (bord de l'encart) */
+}
+
+.encart-col:last-child {
+    padding-right: 0; /* Pas de padding à droite pour la dernière colonne */
+}
+
+/* --- LA FLÈCHE (Triangle) --- */
+/* On utilise ::before pour créer un triangle en CSS pur */
+.encart-popover::before {
+    content: "";
+    position: absolute;
+    top: -10px; /* Positionné juste au-dessus de la boîte */
+    left: var(--arrow-left, 50%); 
+    transform: translateX(-50%);
+    
+    border-width: 0 10px 10px 10px; /* Taille du triangle */
+    border-style: solid;
+    border-color: transparent transparent var(--bg-color) transparent; /* Seul le bas est blanc */
+}
+
+/* --- CONTENU INTERNE : LIENS --- */
+.encart-lien {
+    display: block;
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 8px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #666;
+}
+.encart-lien:last-child { border-bottom: none; }
+.encart-lien::after {
+    content: " →"; /* La flèche à la fin */
+    transition: margin-left 0.2s;
+}
+.encart-lien:hover::after {
+    margin-left: 5px; /* Petite animation au survol */
+}
+
+/* --- CONTENU INTERNE : RUBRIQUES (Titre+Desc+Image) --- */
+.rubrique-item {
+    display: flex; 
+    align-items: center;
+    gap: 15px;
+    padding: 12px 10px; /* Un peu d'espace interne */
+    text-align: left;
+    
+    /* 1. Reset du style de lien (pour pas que ce soit bleu et souligné) */
+    text-decoration: none;
+    color: inherit; /* Garde la couleur du texte définie dans le parent */
+    
+    /* 2. Préparation de la bordure rouge (Invisible par défaut) */
+    /* On met une bordure transparente de 4px à gauche. 
+       Ainsi l'espace est occupé, rien ne bougera au survol */
+    border-left: 4px solid transparent;
+	width: 100%;           /* Force la largeur totale */
+    box-sizing: border-box; /* Inclut le padding dans le calcul de largeur */
+    
+    /* Transition douce pour l'apparition */
+    transition: all 0.2s ease;
+}
+
+/* --- L'EFFET AU SURVOL --- */
+.rubrique-item:hover {
+    /* 1. La barre rouge apparaît (on colorie la bordure transparente) */
+    border-left-color: #d80000; /* Rouge */
+    
+    /* 2. Fond très léger pour marquer la zone (optionnel mais conseillé) */
+    background-color: var(--encart-color);
+    
+    /* 3. Ombrage Haut et Bas uniquement */
+    /* Syntax: offset-x | offset-y | blur-radius | color */
+    /* On combine deux ombres : une vers le haut (valeur négative), une vers le bas */
+    box-shadow: 
+        0 -3px 4px -2px rgba(0,0,0,0.1), /* Ombre haut */
+        0 3px 4px -2px rgba(0,0,0,0.1);  /* Ombre bas */
+}
+
+/* Ajustement des textes pour qu'ils ne soient pas bleus */
+.rubrique-text {
+    flex: 1;
+}
+
+h4{color: var(--accent-color)}
+
+.rubrique-title {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: var(--accent-color); /* Couleur titre fixe */
+}
+
+.rubrique-desc {
+    font-size: 12px;
+    color: var(--text-color); /* Couleur description fixe */
+    margin: 0;
+}
+
+.rubrique-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    /* Petite animation de l'image au survol (bonus) */
+    transition: transform 0.2s ease;
+}
+
+.rubrique-item:hover .rubrique-img {
+    transform: scale(1.05); /* L'image grossit très légèrement */
+}
+
+
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: inherit;
+    font-size: 0.9em;
+}
+
+.theme-btn:hover {
+    background-color: var(--border-color);
+    color: var(--bg-color);
+}

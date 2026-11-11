@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fondation Tarnovsky | Oslavie</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../Style/menu.css">
+	<link rel="stylesheet" href="../Style/footer.css">
+	<link rel="stylesheet" href="../Style/officiel.css">
+	<link rel="stylesheet" href="../Style/tarnovsky.css">
+	<link rel="shortcut icon" href="../Images/Oslavie.png" />
+	<script src="../Code/menu contenu.js"></script>
+	<script src="../Code/menu.js"></script>
+	<script src="../Code/footer.js"></script>
+	<script src="../Code/officiel.js"></script>
+	<script src="../Code/tarnovsky.js"></script>
+
+
+  </head>
+  
+  <body>
+  <header>
+	<button id="menu-btn" class="menu-btn">
+            <img id="menu-img" src="../Contenu site/menu closed.png" alt="Menu">
+    </button>
+	
+  	<nav id="top-bar" class="top-bar" data-menu="politique">
+        
+        <div class="nav-left">
+            <a href="../Index.html" class="nav-logo">
+                <img src="../Images/Sceau-bg.png" alt="Accueil">
+            </a>
+        </div>
+
+        <ul class="nav-center menu-content" id="liste-menu">
+            </ul>
+
+        <div class="nav-right">
+            <button class="nav-link-style options-btn" onclick="ouvrirEncart('options')">
+				<img src="../Contenu site/option.png" alt="" class="options-icon">
+				<span class="options-text">Options</span>
+			</button>
+        </div>
+
+    </nav>
+  </header>  
+
+
+  <main class="page-container">
+    
+    <aside class="sidebar-left">
+
+    <nav class="sommaire-sidebar sticky-menu">
+        <span class="sommaire-titre">Dans cette page :</span>
+        <ul>
+            <li><a href="#Fondation">Fondation Tarnovsky</a></li>
+            <li><a href="#Chiffre">Chiffres clefs</a></li>
+            <li><a href="#Pole">Pôles d'excellence</a></li>
+            <li><a href="#Actu">Actualités</a></li>
+        </ul>
+    </nav>
+    </aside>
+
+    <article class="main-content">
+        
+		<figure class="logo-fondu-container">
+            <img src="../Images/Tarnovsky/Tarnovsky.png" alt="Fondation Tarnovsky">
+        </figure>
+		
+		<blockquote class="citation-doree">L'Excellence pour Héritage,<br> l'Assurance de la Pérennité.</blockquote>
+        <h1 id="Fondation">Notre fondation</h1>
+        
+		<p>
+		Institution de prestige à l'influence internationale, la <span class="txt-souligne">Fondation Tarnovsky</span> consacre sa puissance au rayonnement des arts classiques, de l'opéra au théâtre, et à la valorisation d'un patrimoine immobilier d'exception.
+		À la croisée du grand mécénat et de la préservation des intérêts les plus exclusifs, notre institution allie la noblesse de la culture à la rigueur d'une protection privée absolue. 
+		Par-delà les frontières, nous ne nous contentons pas de façonner l'avenir de l'art et du patrimoine : nous le sécurisons.
+		</p>
+		
+		<blockquote class="citation-doree">
+			Le véritable héritage de notre institution ne réside ni dans l'art ni dans la pierre, mais dans la confiance absolue qui unit nos membres. 
+			Ceux qui s'engagent à nos côtés avec loyauté découvrent bien plus qu'une vocation : ils rejoignent une famille. 
+			Et il est de notre devoir fondamental de toujours veiller sur les nôtres, de les élever et de les protéger avec une bienveillance sans faille.
+			<span class="auteur">— Zoran Tarnovsky</span>
+		</blockquote>
+		
+		
+		<section class="navigation-annexes fade-on-scroll">
+			<h2 class="poles-titre" style="position: relative; margin-bottom: 40px; color: var(--accent-color);">Nous connaître</h2>
+			
+			<div class="liens-annexes-grid">
+				<!-- BLOC GAUCHE : L'HISTOIRE -->
+				<a href="histoire.html" class="lien-annexe-bloc">
+					<!-- Image qui apparaîtra au survol -->
+					<div class="lien-annexe-bg" style="background-image: url('../Images/Tarnovsky/X.jpg');"></div>
+					<!-- Voile sombre pour garantir la lisibilité sur l'image -->
+					<div class="lien-annexe-voile"></div>
+					
+					<div class="lien-annexe-contenu">
+						<span class="lien-annexe-sur-titre">Archives & Héritage</span>
+						<h3 class="lien-annexe-titre">Notre Histoire</h3>
+						<div class="lien-annexe-icone">➔</div>
+					</div>
+				</a>
+
+				<!-- BLOC DROIT : LA PRÉSIDENCE -->
+				<a href="presidence.html" class="lien-annexe-bloc">
+					<div class="lien-annexe-bg" style="background-image: url('../Images/Tarnovsky/Zoran.jpeg');"></div>
+					<div class="lien-annexe-voile"></div>
+					
+					<div class="lien-annexe-contenu">
+						<span class="lien-annexe-sur-titre">Gouvernance</span>
+						<h3 class="lien-annexe-titre">La Présidence</h3>
+						<div class="lien-annexe-icone">➔</div>
+					</div>
+				</a>
+			</div>
+		</section>
+		
+		
+		<h2 id="Chiffre">Chiffres clefs</h2>
+
+		<section class="scrolly-section">
+			<!-- L'écran qui reste "collé" à la caméra -->
+			<div class="scrolly-sticky">
+				
+				<!-- Les images de fond (qui se superposeront) -->
+				<div id="fond-1" class="scrolly-fond active" style="background-image: url('../Images/Tarnovsky/Voyage.jpeg');"></div>
+				<div id="fond-2" class="scrolly-fond" style="background-image: url('../Images/Tarnovsky/Culture.jpeg');"></div>
+				<div id="fond-3" class="scrolly-fond" style="background-image: url('../Images/Tarnovsky/Actif.jpeg');"></div>
+
+				<!-- PREMIÈRE SÉRIE DE CHIFFRES (Liée au fond 1) -->
+				<div class="chiffre-bloc scrolly-etape pos-1" data-etape="1" data-fond="1">
+					<span class="chiffre-valeur">25 ans</span>
+					<span class="chiffre-label">D'excellence au service de la culture</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+				<div class="chiffre-bloc scrolly-etape pos-2" data-etape="2" data-fond="1">
+					<span class="chiffre-valeur">6</span>
+					<span class="chiffre-label">Pays d'implantation</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+				<div class="chiffre-bloc scrolly-etape pos-3" data-etape="3" data-fond="1">
+					<span class="chiffre-valeur">35</span>
+					<span class="chiffre-label">Métropoles avec notre présence</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+
+				<div class="chiffre-bloc scrolly-etape pos-1" data-etape="4" data-fond="2">
+					<span class="chiffre-valeur">578 Mƒ</span>
+					<span class="chiffre-label">Fonds alloués à la préservation du patrimoine</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+				<div class="chiffre-bloc scrolly-etape pos-2" data-etape="5" data-fond="2">
+					<span class="chiffre-valeur">340</span>
+					<span class="chiffre-label">Bourses d'excellence décernées</span>
+					<div class="chiffre-ligne"></div>
+				</div>		
+				<div class="chiffre-bloc scrolly-etape pos-3" data-etape="6" data-fond="2">
+					<span class="chiffre-valeur">120</span>
+					<span class="chiffre-label">Productions artistiques majeures chaque année</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+				
+				<div class="chiffre-bloc scrolly-etape pos-1" data-etape="7" data-fond="3">
+					<span class="chiffre-valeur">7,2 Gƒ</span>
+					<span class="chiffre-label">d'actifs sous gestion</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+				<div class="chiffre-bloc scrolly-etape pos-2" data-etape="8" data-fond="3">
+					<span class="chiffre-valeur">0</span>
+					<span class="chiffre-label">compromission des intérêts protégés</span>
+					<div class="chiffre-ligne"></div>
+				</div>		
+				<div class="chiffre-bloc scrolly-etape pos-3" data-etape="9" data-fond="3">
+					<span class="chiffre-valeur">98 %</span>
+					<span class="chiffre-label">de loyauté de nos collaborateurs</span>
+					<div class="chiffre-ligne"></div>
+				</div>
+			</div>
+
+			<div class="scrolly-piste">
+				<div class="scrolly-trigger" data-etape-active="0"></div> <!-- État de départ vide -->
+				<div class="scrolly-trigger" data-etape-active="1"></div>
+				<div class="scrolly-trigger" data-etape-active="2"></div>
+				<div class="scrolly-trigger" data-etape-active="3"></div>
+				<div class="scrolly-trigger" data-etape-active="transition-2"></div> <!-- Disparition et Fondu d'image -->
+				<div class="scrolly-trigger" data-etape-active="4"></div>
+				<div class="scrolly-trigger" data-etape-active="5"></div>
+				<div class="scrolly-trigger" data-etape-active="6"></div>
+				<div class="scrolly-trigger" data-etape-active="transition-3"></div>
+				<div class="scrolly-trigger" data-etape-active="7"></div>
+				<div class="scrolly-trigger" data-etape-active="8"></div>
+				<div class="scrolly-trigger" data-etape-active="9"></div>
+				<div class="scrolly-trigger" data-etape-active="end"></div> <!-- Maintien avant de reprendre la lecture -->
+			</div>
+		</section>
+		
+		
+		
+		<section class="poles-wrapper fade-on-scroll">
+			<!-- Le titre qui occupera l'espace libéré par les cartes plus basses -->
+			<h2 id="Pole" class="poles-titre">Nos pôles d'excellence</h2>
+			
+			<div class="poles-cartes">
+				
+				<!-- CARTE GAUCHE -->
+				<a href="X.html" class="pole-card pole-side">
+					<!-- Remplacez l'URL par votre image -->
+					<div class="pole-image" style="background-image: url('../Images/Tarnovsky/Immobilier.jpeg');"></div>
+					<div class="pole-voile"></div>
+					<div class="pole-content">
+						<h3 class="pole-nom">Actifs Immobiliers</h3>
+						<div class="pole-desc">
+							<p>Acquisition et valorisation de biens de prestige pour pérenniser l'excellence de notre patrimoine.</p>
+						</div>
+					</div>
+				</a>
+
+				<!-- CARTE CENTRALE (Plus haute) -->
+				<a href="X.html" class="pole-card pole-center">
+					<div class="pole-image" style="background-image: url('../Images/Tarnovsky/Mecenat.jpeg');"></div>
+					<div class="pole-voile"></div>
+					<div class="pole-content">
+						<h3 class="pole-nom">Mécénat culturel</h3>
+						<div class="pole-desc">
+							<p>Soutien indéfectible aux arts classiques et aux jeunes prodiges pour faire rayonner notre héritage.</p>
+						</div>
+					</div>
+				</a>
+
+				<!-- CARTE DROITE -->
+				<a href="X.html" class="pole-card pole-side">
+					<div class="pole-image" style="background-image: url('../Images/Tarnovsky/Gestion.jpeg');"></div>
+					<div class="pole-voile"></div>
+					<div class="pole-content">
+						<h3 class="pole-nom">Gestion supervisée</h3>
+						<div class="pole-desc">
+							<p>Protection sur-mesure et sécurisation absolue des intérêts stratégiques de nos cercles exclusifs.</p>
+						</div>
+					</div>
+				</a>
+
+			</div>
+		</section>
+
+		
+		<section class="actualites-wrapper fade-on-scroll">
+			<h2 id="Actu" class="poles-titre" style="position: relative; margin-bottom: 40px; color: var(--accent-color);">Actualités & Décisions</h2>
+			
+			<div class="carousel-container">
+				<!-- Flèche Gauche -->
+				<button class="carousel-btn prev" id="btn-prev">❮</button>
+				
+				<!-- Fenêtre de vision (masque ce qui dépasse) -->
+				<div class="carousel-viewport">
+					<!-- La piste qui glisse -->
+					<div class="carousel-track" id="actu-track">
+						
+						<!-- CARTE 1 -->
+						<div class="carousel-card" onclick="ouvrirModal('modal-actu-1')">
+							<div class="actu-image" style="background-image: url('../Images/Tarnovsky/Violon.jpeg');"></div>
+							<div class="actu-contenu">
+								<div class="actu-meta">
+									<span class="actu-date">12 Mai 1985</span>
+									<span class="actu-categorie cat-mecenat">Mécénat</span>
+								</div>
+								<h3 class="actu-titre">Parrainage intégral à la violoniste prodige Elena Markova</h3>
+								<p class="actu-extrait">Elena Markova au sein du programme d’excellence « Prima Luce » ...</p>
+								<span class="actu-lire">Lire l'article ➔</span>
+							</div>
+						</div>
+
+						<!-- CARTE 2 -->
+						<div class="carousel-card" onclick="ouvrirModal('modal-actu-2')">
+							<div class="actu-image" style="background-image: url('../Images/Tarnovsky/Olive.jpeg');"></div>
+							<div class="actu-contenu">
+								<div class="actu-meta">
+									<span class="actu-date">19 Avril 1985</span>
+									<span class="actu-categorie cat-acquisition">Acquisition</span>
+								</div>
+								<h3 class="actu-titre">Sécurisation de l'historique Hacienda Santa Clara</h3>
+								<p class="actu-extrait">Intégration d'un nouveau joyau architectural et agricole situé au cœur de Südria...</p>
+								<span class="actu-lire">Lire l'article ➔</span>
+							</div>
+						</div>
+
+						<!-- CARTE 3 -->
+						<div class="carousel-card" onclick="ouvrirModal('modal-actu-3')">
+							<div class="actu-image" style="background-image: url('../Images/Tarnovsky/Protection.jpeg');"></div>
+							<div class="actu-contenu">
+								<div class="actu-meta">
+									<span class="actu-date">2 Avril 1985</span>
+									<span class="actu-categorie cat-protocole">Protocole</span>
+								</div>
+								<h3 class="actu-titre">Redéfinition des standards de confidentialité pour nos membres bienfaiteurs</h3>
+								<p class="actu-extrait">Entrée en vigueur immédiate de la directive « Égide »...</p>
+								<span class="actu-lire">Lire l'article ➔</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				
+				<!-- Flèche Droite -->
+				<button class="carousel-btn next" id="btn-next">❯</button>
+			</div>
+		</section>
+
+
+    </article>
+
+
+  </main>
+
+	
+	<div id="modal-actu-1" class="modal-overlay">
+		<div class="modal-contenu">
+			<button class="modal-close" onclick="fermerModal()">×</button>
+			<div class="actu-meta" style="margin-bottom: 20px;">
+				<span class="actu-date">12 Mai 1985</span>
+				<span class="actu-categorie cat-mecenat">Mécénat</span>
+			</div>
+			<h2 style="color: var(--accent-color); margin-top: 0;">Parrainage intégral à la violoniste prodige Elena Markova</h2>
+			
+			<figure class="grande-image">
+				<img src="../Images/Tarnovsky/Violon.jpeg" alt="Violon">
+			</figure>
+			
+			<p>Dans la droite ligne de sa mission séculaire de transmission des arts majeurs, la Fondation Tarnovsky annonce l’intégration de la jeune virtuose Elena Markova au sein de son programme d’excellence « Prima Luce ». Créé pour identifier et propulser les figures majeures de la scène classique de demain, ce dispositif d'élite assure un mécénat sans compromis.</p>
+			<p>Par cette décision unanime du Conseil, Elena Markova bénéficiera d'une prise en charge financière absolue pour ses cinq prochaines saisons : bourses d'études supérieures, mise à disposition d’un instrument de maître issu de la collection privée de la fondation, et production intégrale de ses premières tournées nationales.</p>
+			<p>Au-delà de l’appui matériel, c’est l’ouverture immédiate d’un écosystème d'influence qui s’offre à elle. Grâce au maillage diplomatique et culturel de notre institution, la jeune soliste aura l'honneur de se produire dès l'hiver prochain sur les scènes des opéras et théâtres partenaires à travers l'Oslavie.</p>
+		</div>
+	</div>
+	<div id="modal-actu-2" class="modal-overlay">
+		<div class="modal-contenu">
+			<button class="modal-close" onclick="fermerModal()">×</button>
+			<div class="actu-meta" style="margin-bottom: 20px;">
+				<span class="actu-date">19 Avril 1985</span>
+				<span class="actu-categorie cat-acquisition">Acquisition</span>
+			</div>
+			<h2 style="color: var(--accent-color); margin-top: 0;">Sécurisation de l'historique Hacienda Santa Clara</h2>
+			
+			<figure class="grande-image">
+				<img src="../Images/Tarnovsky/Olive.jpeg" alt="Olive">
+			</figure>
+			
+			<p>C’est avec une immense fierté que la branche des Actifs Immobiliers de la Fondation Tarnovsky officialise l’acquisition de la prestigieuse Hacienda Santa Clara, joyau architectural et agricole situé au cœur de Südria.</p>
+			<p>Réputé internationalement pour ses oliveraies séculaires produisant un « or vert » d'une rare intensité, ce domaine d'exception se trouvait depuis plusieurs années dans une situation d'abandon. Face à l'incapacité financière de ses anciens propriétaires à entretenir un tel héritage, l'hacienda était menacée de morcellement et de ruine. Fidèle à sa vocation de préservation de l'excellence, notre institution est intervenue avec la plus grande célérité pour sécuriser l'intégralité des terres et des bâtisses.</p>
+			<p>Dès ce trimestre, un vaste plan de réhabilitation sera déployé. Il visera non seulement à restaurer la majesté des bâtiments d'époque, mais également à relancer l'exploitation des oliveraies selon les méthodes traditionnelles les plus exigeantes. L'Hacienda Santa Clara a vocation à devenir à la fois un fleuron de notre portefeuille immobilier et un sanctuaire de repos exclusif, rigoureusement privatisé pour les membres et hauts partenaires de la fondation.</p>
+		</div>
+	</div>
+	<div id="modal-actu-3" class="modal-overlay">
+		<div class="modal-contenu">
+			<button class="modal-close" onclick="fermerModal()">×</button>
+			<div class="actu-meta" style="margin-bottom: 20px;">
+				<span class="actu-date">2 Avril 1985</span>
+				<span class="actu-categorie cat-protocole">Protocole</span>
+			</div>
+			<h2 style="color: var(--accent-color); margin-top: 0;">Redéfinition des standards de confidentialité pour nos membres bienfaiteurs</h2>
+			
+			<figure class="grande-image">
+				<img src="../Images/Tarnovsky/Protection.jpeg" alt="Bouclier">
+			</figure>
+			
+			<p>La direction de la branche Gestion Supervisée annonce l'entrée en vigueur immédiate de la directive « Égide », un protocole de sécurisation révisé et exclusif, destiné à sanctuariser l'intégrité et la discrétion de nos membres bienfaiteurs.</p>
+			<p>Dans un monde où l'exposition est un risque constant, l'anonymat et la tranquillité d'esprit de nos partenaires constituent la pierre angulaire de notre institution. Cette nouvelle directive rehausse nos exigences opérationnelles en matière de prévention des ingérences, de sécurisation des communications et d'escorte lors de déplacements sensibles.</p>
+			<p>Le protocole « Égide » garantit à nos membres que chaque interaction, chaque soutien apporté, et chaque intérêt confié à la Fondation bénéficiera d'une opacité stratégique totale. Nos équipes d'intervention et nos consultants spécialisés appliquent désormais un cahier des charges renforcé, où la fluidité de nos opérations n'a d'égale que leur imperceptibilité.</p>
+		</div>
+	</div>
+	
+
+	<div id="encart-global" class="encart-popover"></div>
+	<footer id="site-footer"></footer>
+  </body>
+</html>

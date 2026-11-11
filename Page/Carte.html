@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Carte | Oslavie</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../Style/menu.css">
+    <link rel="stylesheet" href="../Style/carte.css">
+	<link rel="shortcut icon" href="../Images/Oslavie.png" />
+	<script src="../Code/menu contenu.js"></script>
+	<script src="../Code/menu.js"></script>
+	<script src="../Code/carte.js"></script>
+
+  </head>
+  
+  <body>
+  <header>
+	<button id="menu-btn" class="menu-btn">
+            <img id="menu-img" src="../Contenu site/menu closed.png" alt="Menu">
+    </button>
+	
+  	<nav id="top-bar" class="top-bar" data-menu="politique">
+        
+        <div class="nav-left">
+            <a href="../Index.html" class="nav-logo">
+                <img src="../Images/Sceau-bg.png" alt="Accueil">
+            </a>
+        </div>
+
+        <ul class="nav-center menu-content" id="liste-menu">
+            </ul>
+
+        <div class="nav-right">
+            <button class="nav-link-style options-btn" onclick="ouvrirEncart('options')">
+				<img src="../Contenu site/option.png" alt="" class="options-icon">
+				<span class="options-text">Options</span>
+			</button>
+        </div>
+
+    </nav>
+  </header>  
+
+	<button id="btn-dezoom" class="map-control hidden" onclick="retourNationale()">
+        🔍 Retour Carte Nationale
+    </button>
+
+    <main id="map-container"></main>
+
+
+    <aside id="map-panel" class="panel-closed">
+        <button class="close-panel" onclick="fermerPanel()">×</button>
+        
+        <button class="expand-panel" onclick="agrandirPanel()">⤢</button>
+
+        <div class="panel-content">
+            <h2 id="panel-title">Titre de la zone</h2>
+            <img id="panel-img" src="" alt="" class="hidden">
+            <p id="panel-desc">Description de la zone...</p>
+            
+            <button id="btn-zoom-region" class="btn-action hidden">
+                🔍 Explorer cette région
+            </button>
+        </div>
+    </aside>
+
+
+	<div id="encart-global" class="encart-popover"></div>
+  </body>
+</html>

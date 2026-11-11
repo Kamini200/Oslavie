@@ -1,0 +1,770 @@
+.logo-fondu-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0; /* Espace vertical au-dessus et en-dessous de l'image */
+    margin: 10px 0;  /* Espace vertical pour ne pas coller au texte précédent/suivant */
+    
+    background: linear-gradient(
+        to right, 
+        var(--bg-color) 0%, 
+        #0c2302 25%, 
+        #0c2302 75%, 
+        var(--bg-color) 100%
+    );
+}
+
+.logo-fondu-container img {
+    display: block;
+	max-width: 50vw;
+    height: auto;
+}
+
+
+
+.citation-doree {
+    --or-texte: #996515;       /* Or foncé / Bronze pour la lisibilité sur fond clair */
+    --or-bordure: #b8860b;     /* Or classique pour l'encadrement */
+    --or-fond: rgba(184, 134, 11, 0.05); /* Léger fond doré très transparent */
+}
+
+/* Bascule des couleurs : Mode Nuit */
+body.night-mode .citation-doree {
+    --or-texte: #f4d03f;       /* Or clair / Jaune pour ressortir sur le fond sombre */
+    --or-bordure: #ffd700;     /* Or brillant */
+    --or-fond: rgba(255, 215, 0, 0.05);
+}
+
+/* Le bloc principal de la citation */
+.citation-doree {
+    position: relative;
+    width: 80%;
+    margin: 50px auto;
+    padding: 40px 50px;
+    text-align: center;
+    background-color: var(--or-fond);
+    
+    /* L'encadrement élégant : fine bordure et double effet de profondeur */
+    border: 1px solid var(--or-bordure);
+    border-radius: 3px;
+    box-shadow: inset 0 0 15px var(--or-fond), 0 4px 15px rgba(0,0,0,0.05);
+    
+    /* La typographie (Élégante et classique) */
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.35em;
+    color: var(--or-texte);
+    line-height: 1.6;
+    
+    /* Transition douce si l'utilisateur change de mode */
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+/* Les grands guillemets décoratifs en filigrane */
+.citation-doree::before,
+.citation-doree::after {
+    font-family: 'Georgia', serif;
+    font-size: 4em;
+    color: var(--or-bordure);
+    opacity: 0.3; /* Très discret pour ne pas gêner la lecture */
+    position: absolute;
+    line-height: 0;
+}
+
+/* Positionnement du guillemet ouvrant */
+.citation-doree::before {
+    content: "«";
+    top: 35px;
+    left: 15px;
+}
+
+/* Positionnement du guillemet fermant */
+.citation-doree::after {
+    content: "»";
+    bottom: 55px;
+    right: 15px;
+}
+
+/* Le style pour le nom de l'auteur (optionnel) */
+.citation-doree .auteur {
+    display: block;
+    margin-top: 25px;
+    font-size: 0.65em;
+    font-style: normal; /* On casse l'italique pour contraster */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: var(--text-color); /* Utilise la couleur du texte classique de la page */
+    opacity: 0.8;
+}
+
+
+
+.scrolly-section {
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 60px 0;
+}
+
+/* Le cadre qui fige la caméra */
+.scrolly-sticky {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Gestion des images de fond avec transition en fondu */
+.scrolly-fond {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+}
+.scrolly-fond.active {
+    opacity: 1;
+}
+
+/* Les blocs de chiffres */
+.scrolly-etape {
+    position: absolute;
+    z-index: 2;
+    width: 35%;
+    padding: 30px;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none; /* Empêche les clics de perturber la page */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Placement élégant en "Z" sur l'écran */
+.scrolly-etape.pos-1 { top: 15%; left: 8%; transform: translateY(40px); }
+.scrolly-etape.pos-2 { top: 40%; right: 8%; transform: translateY(40px); }
+.scrolly-etape.pos-3 { bottom: 15%; left: 50%; transform: translate(-50%, 40px); }
+
+/* Animation d'apparition au scroll */
+.scrolly-etape.pos-1.is-visible,
+.scrolly-etape.pos-2.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.scrolly-etape.pos-3.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* La piste invisible qui dicte la longueur du défilement */
+.scrolly-piste {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+}
+.scrolly-trigger {
+    height: 80vh; /* Vous devrez scroller l'équivalent de 80% de votre écran pour avancer d'une étape */
+    width: 100%;
+}
+
+/* Adaptabilité pour les téléphones portables */
+@media (max-width: 900px) {
+    .scrolly-etape { width: 85%; }
+    .scrolly-etape.pos-1, .scrolly-etape.pos-2, .scrolly-etape.pos-3 {
+        left: 50% !important;
+        right: auto;
+        transform: translate(-50%, 40px) !important;
+    }
+    .scrolly-etape.pos-1 { top: 10%; }
+    .scrolly-etape.pos-2 { top: 40%; }
+    .scrolly-etape.pos-3 { top: auto; bottom: 10%; }
+    
+    .scrolly-etape.pos-1.is-visible, 
+    .scrolly-etape.pos-2.is-visible, 
+    .scrolly-etape.pos-3.is-visible {
+        transform: translate(-50%, 0) !important;
+    }
+}
+
+/* --- TYPOGRAPHIE DORÉE (Identique à votre version précédente) --- */
+.chiffre-valeur {
+    display: block;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 5.5em;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffd700;
+    text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+    margin-bottom: 15px;
+}
+
+.chiffre-label {
+    display: block;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #e8e4dc;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.chiffre-ligne {
+    width: 60px;
+    height: 2px;
+    background-color: #ffd700;
+    margin: 25px auto 0 auto;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+
+
+.navigation-annexes {
+    width: 90%;
+    margin: 80px auto 40px auto;
+    position: relative;
+}
+
+.liens-annexes-grid {
+    display: flex;
+    gap: 30px;
+}
+
+/* Le conteneur principal du lien */
+.lien-annexe-bloc {
+    flex: 1;
+    position: relative;
+    padding: 50px 40px;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    background-color: var(--encart-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1;
+}
+
+/* L'image de fond (invisible par défaut) */
+.lien-annexe-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    z-index: -2;
+    transition: opacity 0.5s ease, transform 0.8s ease;
+    filter: grayscale(30%); /* Désature légèrement l'image pour un effet rétro-chic */
+}
+
+/* Le filtre sombre (invisible par défaut) */
+.lien-annexe-voile {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(18, 20, 24, 0.85); /* Un noir élégant tiré de votre mode nuit */
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.5s ease;
+}
+
+/* La typographie au repos */
+.lien-annexe-contenu {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.lien-annexe-sur-titre {
+    font-family: sans-serif;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    transition: color 0.4s ease;
+}
+
+.lien-annexe-titre {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 2.2em;
+    color: var(--accent-color);
+    margin: 0;
+    transition: color 0.4s ease;
+}
+
+.lien-annexe-icone {
+    align-self: flex-end;
+    font-size: 1.8em;
+    color: var(--border-color);
+    margin-top: auto; /* Pousse la flèche tout en bas */
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* --- LES EFFETS AU SURVOL (RÉVÉLATION) --- */
+
+.lien-annexe-bloc:hover {
+    transform: translateY(-8px);
+    border-color: #ffd700;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.lien-annexe-bloc:hover .lien-annexe-bg {
+    opacity: 1;
+    transform: scale(1.05); /* L'image s'agrandit lentement */
+}
+
+.lien-annexe-bloc:hover .lien-annexe-voile {
+    opacity: 1;
+}
+
+/* Le texte devient clair et doré pour contraster avec le voile sombre */
+.lien-annexe-bloc:hover .lien-annexe-sur-titre {
+    color: #e8e4dc; 
+}
+
+.lien-annexe-bloc:hover .lien-annexe-titre,
+.lien-annexe-bloc:hover .lien-annexe-icone {
+    color: #ffd700;
+}
+
+.lien-annexe-bloc:hover .lien-annexe-icone {
+    transform: translateX(12px); /* La flèche invite au clic */
+}
+
+/* --- ADAPTABILITÉ MOBILE --- */
+@media (max-width: 900px) {
+    .liens-annexes-grid {
+        flex-direction: column;
+    }
+    .navigation-annexes {
+        width: 100%;
+    }
+}
+
+
+
+/* --- SECTION DES PÔLES D'EXCELLENCE --- */
+
+.poles-wrapper {
+    /* --- DÉFINITION DES COULEURS (MODE JOUR PAR DÉFAUT) --- */
+    --bordure-vert: #4a7c59; /* Un vert clair/moyen élégant pour le jour */
+    --ombre-or: rgba(184, 134, 11, 0.25); /* Ombre or foncé pour fond clair */
+    --ombre-cuivre: rgba(184, 115, 51, 0.25); /* Ombre cuivrée pour fond clair */
+    
+    position: relative;
+    width: 100%;
+    margin: 80px 0;
+    padding-top: 50px;
+}
+
+body.night-mode .poles-wrapper {
+    /* --- BASCULE DES COULEURS (MODE NUIT) --- */
+    --bordure-vert: #0c2302; /* Votre vert foncé original */
+    --ombre-or: rgba(255, 215, 0, 0.2); /* Ombre or brillante pour fond sombre */
+    --ombre-cuivre: rgba(200, 110, 50, 0.2); /* Ombre cuivrée éclatante pour fond sombre */
+}
+
+/* Le titre logé dans l'espace supérieur */
+.poles-titre {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: var(--accent-color);
+    font-size: 2.2em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    z-index: 0;
+}
+
+/* Le conteneur Flexbox */
+.poles-cartes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- STRUCTURE DES CARTES --- */
+
+/* Le style commun aux 3 cartes */
+.pole-card {
+    flex: 1;
+    max-width: 320px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-decoration: none;
+    border-radius: 4px;
+    overflow: hidden;
+    
+    /* Applique le vert dynamique par défaut */
+    border: 1px solid var(--bordure-vert);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* CARTE CENTRALE : Ombre dorée dynamique */
+.pole-center {
+    height: 480px;
+    margin-top: 40px;
+    box-shadow: 0 15px 35px var(--ombre-or);
+}
+
+/* CARTES LATÉRALES : Ombre cuivrée dynamique */
+.pole-side {
+    height: 380px;
+    margin-top: 110px;
+    box-shadow: 0 10px 25px var(--ombre-cuivre);
+}
+
+/* --- LES IMAGES ET LE VOILE --- */
+.pole-image {
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+
+.pole-voile {
+    position: absolute;
+    bottom: 0; left: 0; 
+    width: 100%; height: 60%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+    transition: height 0.4s ease;
+}
+
+/* --- ANIMATIONS AU SURVOL (HOVER) --- */
+
+/* 1. L'astuce magique : Si le groupe contient UNE carte survolée, TOUTES les cartes deviennent dorées */
+.poles-cartes:has(.pole-card:hover) .pole-card {
+    border-color: #ffd700;
+}
+
+/* 2. Élévation globale de la carte spécifiquement survolée */
+.pole-card:hover {
+    transform: translateY(-10px);
+}
+
+/* 3. Renforcement de l'ombre au survol (Cuivre pour les côtés, Or pour le centre) */
+.pole-side:hover {
+    box-shadow: 0 20px 45px var(--ombre-cuivre);
+}
+.pole-center:hover {
+    box-shadow: 0 20px 50px var(--ombre-or);
+}
+
+/* 4. Effets internes à la carte survolée (Zoom image et montée du voile) */
+.pole-card:hover .pole-image {
+    transform: scale(1.06);
+}
+.pole-card:hover .pole-voile {
+    height: 80%;
+}
+
+/* --- LE CONTENU TEXTUEL --- */
+.pole-content {
+    position: relative;
+    z-index: 2;
+    padding: 25px;
+    text-align: center;
+}
+
+.pole-nom {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #ffffff;
+    font-size: 1.4em;
+    margin: 0;
+    padding-bottom: 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.4s ease, padding-bottom 0.4s ease, border-color 0.4s ease;
+}
+
+.pole-card:hover .pole-nom {
+    color: #ffd700;
+    padding-bottom: 10px;
+    border-color: #ffd700;
+}
+
+.pole-desc {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+}
+
+.pole-desc p {
+    color: #e8e4dc;
+    font-family: sans-serif;
+    font-size: 0.9em;
+    margin: 0;
+    line-height: 1.5;
+    text-indent: 0 !important;
+}
+
+.pole-card:hover .pole-desc {
+    max-height: 150px;
+    opacity: 1;
+    margin-top: 15px;
+}
+
+/* --- ADAPTABILITÉ POUR LES PETITS ÉCRANS --- */
+@media (max-width: 900px) {
+    .poles-cartes {
+        flex-direction: column;
+        align-items: center;
+    }
+    .pole-side, .pole-center {
+        width: 90%;
+        max-width: none;
+        height: 350px;
+        margin-top: 30px;
+    }
+    .poles-titre {
+        position: relative;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+/* --- SECTION ACTUALITÉS (CAROUSEL) --- */
+
+.actualites-wrapper {
+    /* Largeur panoramique, plus grande que le main-content */
+    width: 70vw; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 80px 0;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+/* Les boutons fléchés */
+.carousel-btn {
+    background: var(--nav-bg);
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.carousel-btn:hover {
+    background: #ffd700;
+    color: #121418;
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px; /* Laisse la place pour les ombres des cartes au survol */
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Les cartes d'actualité */
+.carousel-card {
+    /* Affiche exactement 2 cartes à la fois */
+    flex: 0 0 calc(50% - 15px); 
+    background-color: var(--encart-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Adaptation de la bordure dorée au survol */
+.carousel-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+    box-shadow: 0 15px 30px rgba(184, 134, 11, 0.15);
+}
+body.night-mode .carousel-card:hover {
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+}
+
+.actu-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.actu-contenu {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+body.night-mode .modal-contenu p {
+    color: #f4f4f4;                 /* Un blanc beaucoup plus pur que le gris standard */
+    line-height: 1.75;              /* Interligne plus aéré pour reposer l'œil */
+    letter-spacing: 0.3px;          /* Léger espacement des lettres */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4); /* Donne un très léger relief au texte */
+}
+
+/* Métadonnées (Date et Catégorie) */
+.actu-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 0.85em;
+}
+.actu-date {
+    color: #666;
+    font-style: italic;
+}
+body.night-mode .actu-date { color: #aaa; }
+
+.actu-categorie {
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+	margin-right: 25px;
+}
+.cat-mecenat { background: rgba(184, 134, 11, 0.2); color: #b8860b; }
+.cat-acquisition { background: rgba(74, 124, 89, 0.2); color: #4a7c59; }
+.cat-protocole { background: rgba(139, 61, 0, 0.2); color: var(--link-color); }
+
+body.night-mode .cat-mecenat { color: #ffd700; }
+
+.actu-titre {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: var(--accent-color);
+    font-size: 1.4em;
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+}
+
+.actu-extrait {
+    color: var(--text-color);
+    font-size: 0.95em;
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+    text-indent: 0 !important; /* Retire l'alinéa */
+    flex-grow: 1; /* Pousse le lien "Lire" tout en bas */
+}
+
+.actu-lire {
+    color: var(--link-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    transition: color 0.2s;
+}
+.carousel-card:hover .actu-lire {
+    color: #ffd700;
+}
+
+
+.modal-contenu .modal-close {
+    position: sticky;
+    top: -10px;           /* Colle en haut de la fenêtre lors du défilement */
+    float: right;         /* Se place à droite sans casser la mise en page */
+    margin-right: -15px;  /* S'aligne parfaitement avec le bord */
+    margin-bottom: 15px;
+    z-index: 100;         /* Assure qu'elle passe par-dessus les images et le texte */
+    
+    /* On lui donne un petit fond circulaire pour qu'elle reste lisible 
+       même quand le texte défile juste en dessous d'elle */
+    background-color: var(--encart-bg);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.modal-contenu .modal-close:hover {
+    transform: scale(1.1); /* Petit effet de zoom au survol */
+}
+
+body.night-mode .modal-contenu .modal-close {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    color: #ffd700;
+}
+body.night-mode .modal-contenu .modal-close:hover {
+    background-color: #ffd700;
+    color: #121418;
+}
+
+/* --- 3. BARRE DE DÉFILEMENT STYLISÉE (MODE SOMBRE) --- */
+
+/* Pour Firefox */
+body.night-mode {
+    scrollbar-width: thin;
+    scrollbar-color: #b8860b #121418; /* Ascenseur doré foncé, fond sombre */
+}
+
+/* Pour Chrome, Edge, Safari */
+body.night-mode ::-webkit-scrollbar {
+    width: 12px;
+}
+
+body.night-mode ::-webkit-scrollbar-track {
+    background: #121418; /* Couleur du fond de page principal */
+    border-left: 1px solid #1c2026; /* Fine ligne pour délimiter la piste */
+}
+
+body.night-mode ::-webkit-scrollbar-thumb {
+    background-color: #b8860b; /* Or sombre/bronze */
+    border-radius: 6px;
+    border: 3px solid #121418; /* Effet de marge interne pour affiner l'ascenseur */
+}
+
+body.night-mode ::-webkit-scrollbar-thumb:hover {
+    background-color: #ffd700; /* Devient or vif quand on l'attrape ou la survole */
+}

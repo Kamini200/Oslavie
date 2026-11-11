@@ -1,0 +1,199 @@
+/* --- BASE DU FOYER CULTUREL --- */
+body {
+    background-color: #111; /* Fond très sombre "Musée" */
+    color: white;
+    margin: 0;
+    font-family: 'Times New Roman', serif;
+}
+
+/* --- DÉFINITION DES VARIABLES (THÈMES) --- */
+:root {
+    /* MODE JOUR (Ambiance Papier / Administratif) */
+    --bg-color: #f4f1ea;          /* Bleu clair */
+    --text-color: #2c2c2c;        /* Gris anthracite (encre) */
+    --link-color: #8b3d00;        /* Rouge brique officiel */
+	--link2-color: #ad4f09;
+    --nav-bg: #dad5cd77;            /* Beige plus foncé */
+    --encart-bg: #aaddff;         /* Fond des encarts */
+    --border-color: #555555;      /* Bordures fines */
+    --accent-color: #2c3e50;      /* Bleu nuit pour titres */
+	.txt-rouge     { color: #d80000; }
+}
+
+body.night-mode {
+    /* MODE NUIT (Ambiance Bunker / Terminal) */
+    --bg-color: #121418;          /* Bleu nuit */
+    --text-color: #d0d0d0;        /* Blanc cassé (moins agressif) */
+    --link-color: #ffbf00;        /* Ambre (style écran phosphore) */
+	--link2-color: #ffd700;
+    --nav-bg: #1c202677;            /* Gris acier foncé */
+    --encart-bg: #001c4a;         /* Fond des encarts sombre */
+    --border-color: #4a5568;      /* Bordures gris-bleu */
+    --accent-color: #afbac6;      /* Gris clair pour titres */
+}
+
+.foyer-culturel {
+    padding: 120px 20px 80px 20px; /* Espace pour le menu en haut */
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+/* --- EN-TÊTE --- */
+.foyer-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.foyer-titre {
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 15px 0;
+    color: #fff;
+}
+
+.foyer-desc {
+    font-size: 1.2em;
+    color: #aaa;
+    font-style: italic;
+    margin: 0 0 20px 0;
+}
+
+.ligne-or {
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffc691, transparent);
+    margin: 0 auto;
+}
+
+/* --- LE CONTENEUR DES 3 PORTAILS --- */
+.foyer-portails {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap; /* Passe à la ligne sur petit écran */
+}
+
+/* --- LA CARTE (PORTAIL) INDIVIDUELLE --- */
+.portail-card {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden; /* Empêche l'image de déborder quand elle zoome */
+    text-decoration: none;
+    color: white;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    /* L'animation de base pour la carte entière */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* 1. L'image de fond */
+.portail-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s ease; /* Transition lente pour l'élégance */
+}
+
+/* 2. Le voile sombre par-dessus l'image */
+.portail-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
+    transition: opacity 0.4s ease;
+}
+
+/* 3. Le texte à l'intérieur */
+.portail-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.portail-icon {
+    height: 70px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.portail-card h2 {
+    font-size: 1.8em;
+    margin: 0 0 10px 0;
+    color: #ffc691;
+    border-bottom: none; /* Annule le style de vos h2 normaux */
+}
+
+.portail-card p {
+    font-size: 1em;
+    color: #ccc;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+    text-align: left;
+    text-indent: 0; /* Annule l'alinéa */
+}
+
+.portail-btn {
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    opacity: 0; /* Caché par défaut */
+    transform: translateX(-10px); /* Légèrement décalé à gauche */
+    transition: all 0.4s ease;
+}
+
+
+/* --- LES EFFETS AU SURVOL (LA MAGIE) --- */
+
+.portail-card:hover {
+    transform: translateY(-10px); /* La carte monte légèrement */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    border-color: #ffc691; /* Bordure cuivrée */
+}
+
+.portail-card:hover .portail-bg {
+    transform: scale(1.1); /* L'image zoome doucement à l'intérieur */
+}
+
+.portail-card:hover .portail-overlay {
+    opacity: 0.7; /* Le voile s'éclaircit un peu pour mieux voir l'image */
+}
+
+.portail-card:hover .portail-btn {
+    opacity: 1; /* Le bouton apparaît */
+    transform: translateX(0); /* Le bouton glisse à sa place */
+    color: #ffc691;
+}
+
+
+/* --- ANIMATION D'APPARITION AU CHARGEMENT --- */
+
+.reveal-anim {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+/* Décalages (Cascade) */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

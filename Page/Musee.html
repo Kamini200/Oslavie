@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Culture | Oslavie</title>
+    
+    <link rel="stylesheet" href="../Style/menu.css">
+    <link rel="stylesheet" href="../Style/footer.css">
+    <link rel="stylesheet" href="../Style/musee.css">
+    
+    <script src="../Code/menu contenu.js"></script>
+    <script src="../Code/menu.js"></script>
+    <script src="../Code/footer.js"></script>
+    <script src="../Code/musee.js" defer></script>
+</head>
+<body>
+	<header>
+		<button id="menu-btn" class="menu-btn">
+				<img id="menu-img" src="../Contenu site/menu closed.png" alt="Menu">
+		</button>
+		
+		<nav id="top-bar" class="top-bar" data-menu="politique">
+			
+			<div class="nav-left">
+				<a href="../Index.html" class="nav-logo">
+					<img src="../Images/Sceau-bg.png" alt="Accueil">
+				</a>
+			</div>
+
+			<ul class="nav-center menu-content" id="liste-menu">
+				</ul>
+
+			<div class="nav-right">
+				<button class="nav-link-style options-btn" onclick="ouvrirEncart('options')">
+					<img src="../Contenu site/option.png" alt="" class="options-icon">
+					<span class="options-text">Options</span>
+				</button>
+			</div>
+
+		</nav>
+	</header>  
+
+    <main class="foyer-culturel">
+        
+        <header class="foyer-header reveal-anim">
+            <h1 class="foyer-titre">Patrimoine Culturel National</h1>
+            <p class="foyer-desc">Gardien de la mémoire, de l'art et de l'âme du Second État.</p>
+            <div class="ligne-or"></div>
+        </header>
+
+        <section class="foyer-portails">
+            
+            <a href="Galerie.html" class="portail-card reveal-anim delay-1">
+                <div class="portail-bg" style="background-image: url('../Images/Culture/1-Gallerie.png');"></div>
+                <div class="portail-overlay"></div>
+                <div class="portail-content">
+                    <img class="portail-icon" src="../Contenu site/palette.png"></img>
+                    <h2>La Galerie Nationale</h2>
+                    <p>Peintures, fresques historiques et iconographies officielles.</p>
+                    <span class="portail-btn">Entrer dans la galerie ➔</span>
+                </div>
+            </a>
+
+            <a href="Audiotheque.html" class="portail-card reveal-anim delay-2">
+                <div class="portail-bg" style="background-image: url('../Images/Culture/2-Audio.png');"></div>
+                <div class="portail-overlay"></div>
+                <div class="portail-content">
+                    <img class="portail-icon" src="../Contenu site/note.png"></img>
+                    <h2>L'Audiothèque d'État</h2>
+                    <p>Hymnes, marches militaires et captations symphoniques.</p>
+                    <span class="portail-btn">Écouter les archives ➔</span>
+                </div>
+            </a>
+
+            <a href="Litterature.html" class="portail-card reveal-anim delay-3">
+                <div class="portail-bg" style="background-image: url('../Images/Culture/3-Archives.png');"></div>
+                <div class="portail-overlay"></div>
+                <div class="portail-content">
+                    <img class="portail-icon" src="../Contenu site/livre.png"></img>
+                    <h2>Les Archives Littéraires</h2>
+                    <p>Essais philosophiques, textes fondateurs et manifestes.</p>
+                    <span class="portail-btn">Consulter les textes ➔</span>
+                </div>
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer id="site-footer"></footer>
+
+	<div id="encart-global" class="encart-popover"></div>
+	
+</body>
+</html>

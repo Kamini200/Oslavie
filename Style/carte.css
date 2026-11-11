@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    overflow: hidden; /* On veut que la carte prenne tout l'écran sans scroll */
+    background-color: var(--encart-bg); /* Bleu "Océan" par défaut */
+    font-family: 'Times New Roman', serif;
+}
+
+/* --- DÉFINITION DES VARIABLES (THÈMES) --- */
+:root {
+    /* MODE JOUR (Ambiance Papier / Administratif) */
+    --bg-color: #f4f1ea;          /* Bleu clair */
+    --text-color: #2c2c2c;        /* Gris anthracite (encre) */
+    --link-color: #8b3d00;        /* Rouge brique officiel */
+	--link2-color: #ad4f09;
+    --nav-bg: #dad5cd77;            /* Beige plus foncé */
+    --encart-bg: #aaddff;         /* Fond des encarts */
+    --border-color: #555555;      /* Bordures fines */
+    --accent-color: #2c3e50;      /* Bleu nuit pour titres */
+	.txt-rouge     { color: #d80000; }
+}
+
+body.night-mode {
+    /* MODE NUIT (Ambiance Bunker / Terminal) */
+    --bg-color: #121418;          /* Bleu nuit */
+    --text-color: #d0d0d0;        /* Blanc cassé (moins agressif) */
+    --link-color: #ffbf00;        /* Ambre (style écran phosphore) */
+	--link2-color: #ffd700;
+    --nav-bg: #1c202677;            /* Gris acier foncé */
+    --encart-bg: #001c4a;         /* Fond des encarts sombre */
+    --border-color: #4a5568;      /* Bordures gris-bleu */
+    --accent-color: #afbac6;      /* Gris clair pour titres */
+}
+
+.ponomar-regular {
+  font-family: "Ponomar", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* --- CONTENEUR CARTE --- */
+#map-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    padding-right: 5px; 
+    box-sizing: border-box;
+}
+
+/* Style général des SVG */
+svg {
+    width: 85%;
+    height: 100%;
+    max-height: 97vh; /* Garde une marge */
+}
+
+.map-region-transparent {
+    fill: transparent;       /* Invisible par défaut : on voit le PNG dessous */
+    stroke: none;            /* Pas de bordure par défaut */
+    stroke-width: 2;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Au survol : La zone s'illumine */
+.map-region-transparent:hover {
+    fill: rgba(216, 0, 0, 0.4); /* Rouge Oslavie à 40% d'opacité */
+    stroke: #d80000;            /* Bordure rouge solide */
+    stroke-width: 3px;
+}
+
+/* --- INTERACTIVITÉ DES ZONES (LES PATHS) --- */
+.map-region {
+    fill: #e0cda8; /* Couleur Terre / Parchemin */
+    stroke: #5c4033; /* Frontières marron foncé */
+    stroke-width: 1.5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.map-pays {
+    fill: #9ea8a0; /* Couleur grise/verte pour les autres pays */
+    stroke: #333;
+    stroke-width: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Au survol de la souris */
+.map-region:hover {
+    fill: #d80000; /* Rouge Oslavie */
+    stroke: white;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); /* Effet de relief */
+    z-index: 10; /* Tente de passer au dessus (marche selon l'ordre SVG) */
+}
+
+.map-pays:hover {
+    fill: #444; /* S'assombrit */
+    stroke: white;
+}
+
+/* --- LE VOLET LATÉRAL --- */
+#map-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: auto; 
+    width: 350px;
+    height: 100vh;
+    background: var(--bg-color);
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2); 
+    padding: 40px 20px;
+    z-index: 2000;
+    
+    /* ANIMATION : On cache vers la GAUCHE (-100%) */
+    transform: translateX(-100%); 
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), width 0.4s ease;
+}
+
+/* Classe pour ouvrir le volet */
+#map-panel.panel-open {
+    transform: translateX(0);
+}
+
+/* Classe pour agrandir le volet */
+#map-panel.panel-large {
+    width: 600px; /* Largeur agrandie */
+}
+
+/* Contenu du volet */
+#panel-title {
+    color: var(--accent-color);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+	font-family: Ponomar;
+}
+#panel-img {
+    width: 100%;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+#panel-desc {
+    color: var(--text-color);
+	font-family: Ponomar;
+}
+
+/* Boutons d'action */
+.close-panel, .expand-panel {
+    position: absolute;
+    top: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--link-color);
+}
+.close-panel { right: 15px; font-size: 2em; }
+.expand-panel { right: 50px; } /* Juste à côté de la croix */
+
+.btn-action {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: var(--link-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+.btn-action:hover { background-color: var(--link2-color); }
+
+/* --- BOUTON DEZOOM (En haut à gauche) --- */
+#btn-dezoom {
+    position: fixed;
+    top: 20px;
+    right: 70px;
+    z-index: 1000;
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid #d80000;
+    color: #d80000;
+    font-weight: bold;
+    cursor: pointer;
+}
+.hidden { display: none; }

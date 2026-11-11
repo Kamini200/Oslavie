@@ -1,0 +1,120 @@
+/* Reset basique */
+* { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+/* --- FOND DE PAGE --- */
+body {
+    background-color: #1a1a1a; /* Fond sombre */
+    background-image: radial-gradient(circle at center, #2a2a2a 0%, #111 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centre tout verticalement */
+}
+
+/* --- CONTENEUR CENTRAL --- */
+.portal-container {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* --- LOGO --- */
+.portal-logo {
+    width: 160px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+.portal-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 2.5em;
+    margin: 0 0 40px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffc691; /* Votre couleur or/cuivre */
+}
+
+/* --- BARRE DE RECHERCHE (WRAPPER) --- */
+.search-wrapper {
+    position: relative; /* Important pour caler les suggestions en dessous */
+    width: 100%;
+}
+
+/* L'input (Champ texte) */
+#barre-recherche {
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 1.2em;
+    border: 2px solid #444;
+    border-radius: 30px; /* Bords très ronds */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center; /* Texte au milieu au début */
+}
+
+/* Effet quand on clique dedans */
+#barre-recherche:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #ffc691;
+    box-shadow: 0 0 15px rgba(255, 198, 145, 0.3);
+    text-align: left; /* Le texte se cale à gauche pour écrire */
+    padding-left: 20px;
+}
+
+/* --- LISTE DES SUGGESTIONS (Menu déroulant) --- */
+#suggestions-box {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    top: 110%; /* Juste en dessous de la barre */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 100;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* Un résultat individuel */
+.suggestion-item {
+    padding: 12px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333; /* Texte noir sur fond blanc */
+    transition: background 0.2s;
+}
+
+.suggestion-item:last-child { border-bottom: none; }
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.sugg-titre {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.sugg-url {
+    font-size: 0.8em;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* --- FOOTER DISCRET --- */
+.portal-footer {
+    position: fixed;
+    bottom: 20px;
+    font-size: 0.8em;
+    color: #555;
+}
