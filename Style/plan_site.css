@@ -1,0 +1,90 @@
+.sitemap-container {
+    background-color: var(--encart-bg); /* Fond beige papier ou sombre selon le thème */
+    padding: 40px;
+    border: 1px solid var(--border-color); /* Bordure fine officielle */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin: 40px auto;
+    font-family: inherit; /* Hérite du Times New Roman */
+    color: var(--text-color);
+}
+
+.sitemap-list, .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- ÉLÉMENTS RACINES (Avec points de couleurs) --- */
+.sitemap-list > li {
+    position: relative;
+    margin-bottom: 25px;
+    padding-left: 35px;
+    font-size: 1.2em;
+}
+
+/* Le point de couleur vintage (avec contour officiel) */
+.sitemap-list > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--dot-color, var(--link-color));
+    border: 2px solid var(--bg-color); 
+    box-shadow: 0 0 0 1px var(--border-color); /* Double bordure type "cible" */
+}
+
+/* --- GESTION INFINIE DES RAMIFICATIONS (Sous-listes) --- */
+.sub-list {
+    margin-top: 12px;
+    margin-bottom: 15px;
+    margin-left: -17px; /* Aligne la ligne sous le texte parent */
+    padding-left: 20px;
+    border-left: 1px solid var(--border-color); /* Ligne verticale de l'arborescence */
+}
+
+.sub-list li {
+    position: relative;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    font-size: 0.95em;
+}
+
+.sub-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Branches horizontales infinies */
+.sub-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 15px;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+/* --- TYPOGRAPHIE ET LIENS --- */
+
+/* Textes sans liens (titres de catégories) */
+.sitemap-container span {
+    color: var(--accent-color);
+    font-weight: bold;
+    cursor: default;
+}
+
+/* Liens du plan (reprend le style officiel) */
+.sitemap-container a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.sitemap-container a:hover {
+    color: var(--link2-color);
+    text-decoration: underline;
+}
