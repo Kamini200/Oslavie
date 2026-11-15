@@ -1,0 +1,96 @@
+/* --- LE CONTENEUR PRINCIPAL DU FOOTER --- */
+#site-footer {
+    width: 100%;
+    /* Votre dégradé "Menu" */
+    background: linear-gradient(180deg,rgba(255, 180, 110, 1) 0%, rgba(209, 134, 69, 1) 30%, rgba(128, 71, 28, 1) 100%);
+    color: white; /* Texte en blanc pour le contraste */
+    font-family: 'Times New Roman', serif;
+    padding-top: 40px;
+    margin-top: 80px; /* Sépare bien le footer du contenu principal */
+    border-top: 4px solid #fff; /* Une petite ligne blanche de séparation esthétique */
+}
+
+/* --- LA DISPOSITION EN COLONNES --- */
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Espacement égal entre les colonnes */
+    align-items: flex-start;       /* Aligne tout en haut */
+    flex-wrap: wrap;               /* Permet de passer à la ligne sur petits écrans */
+    max-width: 1200px;
+    margin: 0 auto;                /* Centre le bloc global */
+    padding-bottom: 40px;
+}
+
+/* Style commun des colonnes */
+.footer-col {
+    flex: 1;             /* Chaque colonne prend une part égale */
+    min-width: 250px;    /* Largeur minimum avant de passer à la ligne */
+    padding: 0 20px;
+    text-align: center;  /* Tout centré (plus élégant pour un footer officiel) */
+}
+
+/* --- COLONNE 1 : LOGO --- */
+.footer-logo {
+    height: 170px;        /* Taille du logo */
+    width: auto;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* Ombre portée sur le logo transparent */
+}
+
+.footer-slogan {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #fff; /* Blanc légèrement transparent ? non, blanc pur ici */
+    margin: 0;
+}
+
+/* --- COLONNE 2 : TEXTES --- */
+.footer-col h4 {
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.5); /* Ligne fine sous le titre */
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+	color: black;
+}
+
+.footer-col p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+/* --- COLONNE 3 : LIENS --- */
+.footer-links {
+    list-style: none; /* Pas de puces */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s, text-shadow 0.2s;
+    font-size: 1em;
+}
+
+.footer-links a:hover {
+    color: #ffeeb0; /* Un jaune pâle au survol */
+    text-shadow: 0 0 5px rgba(255, 200, 0, 0.5); /* Petit effet lumineux */
+    text-decoration: underline;
+}
+
+/* --- COPYRIGHT (TOUT EN BAS) --- */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.6); /* Fond un peu plus sombre */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.8);
+}
