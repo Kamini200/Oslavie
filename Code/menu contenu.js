@@ -6,10 +6,10 @@ const configurationsMenu = {
     `,
 
     "politique": `
-        <li><button onclick="ouvrirEncart('Actu')">Actualités</button></li>
+        <li><button onclick="ouvrirEncart('X')">X</button></li>
 		<li><a href="Musee.html">Culture</a></li>
         <li><button onclick="ouvrirEncart('Présidence')">Présidence</button></li>
-        <li><button onclick="ouvrirEncart('Institution')">Institution</button></li>
+        <li><button onclick="ouvrirEncart('XX')">XX</button></li>
     `,
 
     "XXX": `
@@ -46,21 +46,21 @@ const contenuEncarts = {
         <a href="Deconnexion.html" class="encart-lien">Déconnexion</a>
     `,
 
-    "Institution": `
-        <a href="archives.html" class="rubrique-item">
+    "X": `
+        <a href="X.html" class="rubrique-item">
 			<div class="rubrique-text">
-				<span class="rubrique-title">Documentation</span>
-				<p class="rubrique-desc">Accédez à toutes les archives.</p>
+				<span class="rubrique-title">X</span>
+				<p class="rubrique-desc">Accédez à X.</p>
 			</div>
-			<img src="../Contenu-site/doc-icon.png" class="rubrique-img" alt="">
+			<img src="../Contenu-site/X.png" class="rubrique-img" alt="">
 		</a>
 		
-		<a href="support.html" class="rubrique-item">
+		<a href="Y.html" class="rubrique-item">
 			<div class="rubrique-text">
-				<span class="rubrique-title">Support Technique</span>
-				<p class="rubrique-desc">Une équipe disponible 24/7.</p>
+				<span class="rubrique-title">Y</span>
+				<p class="rubrique-desc">Accédez à Y.</p>
 			</div>
-			<img src="../Contenu-site/support-icon.png" class="rubrique-img" alt="">
+			<img src="../Contenu-site/Y.png" class="rubrique-img" alt="">
 		</a>
     `,
 	
@@ -102,43 +102,43 @@ const contenuEncarts = {
 		</div>
     `,
 	
-	"Actu": `
+	"XX": `
 		<div class="encart-row">
 			<div class="encart-col">
-				<h4>Mon Compte</h4>
+				<h4>X</h4>
 				<a href="X" class="rubrique-item">
 					<div class="rubrique-text">
-						<span class="rubrique-title">Documentation</span>
-						<p class="rubrique-desc">Accédez à toutes les archives.</p>
+						<span class="rubrique-title">X</span>
+						<p class="rubrique-desc">Accédez à X.</p>
 					</div>
-					<img src="../Contenu-site/doc-icon.png" class="rubrique-img" alt="">
+					<img src="../Contenu-site/X.png" class="rubrique-img" alt="">
 				</a>
 				
 				<a href="X" class="rubrique-item">
 					<div class="rubrique-text">
-						<span class="rubrique-title">Support Technique</span>
-						<p class="rubrique-desc">Une équipe disponible 24/7.</p>
+						<span class="rubrique-title">XX</span>
+						<p class="rubrique-desc">Accédez à XX.</p>
 					</div>
-					<img src="../Contenu-site/support-icon.png" class="rubrique-img" alt="">
+					<img src="../Contenu-site/XX.png" class="rubrique-img" alt="">
 				</a>
 			</div>
 			
 			<div class="encart-col">
-				<h4>Mon Compte</h4>
+				<h4>Y</h4>
 				<a href="X" class="rubrique-item">
 					<div class="rubrique-text">
-						<span class="rubrique-title">Documentation</span>
-						<p class="rubrique-desc">Accédez à toutes les archives.</p>
+						<span class="rubrique-title">Y</span>
+						<p class="rubrique-desc">Accédez à Y.</p>
 					</div>
-					<img src="../Contenu-site/doc-icon.png" class="rubrique-img" alt="">
+					<img src="../Contenu-site/Y.png" class="rubrique-img" alt="">
 				</a>
 				
 				<a href="X" class="rubrique-item">
 					<div class="rubrique-text">
-						<span class="rubrique-title">Support Technique</span>
-						<p class="rubrique-desc">Une équipe disponible 24/7.</p>
+						<span class="rubrique-title">YY</span>
+						<p class="rubrique-desc">Accédez à YY.</p>
 					</div>
-					<img src="../Contenu-site/support-icon.png" class="rubrique-img" alt="">
+					<img src="../Contenu-site/YY.png" class="rubrique-img" alt="">
 				</a>
 			</div>
 		</div>
