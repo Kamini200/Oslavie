@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4>Liens Utiles</h4>
                     <ul class="footer-links">
                         <li><a href="mentions-legales.html">Mentions Légales</a></li>
-                        <li><a href="plan-du-site.html">Plan du Site</a></li>
+                        <li><a href="Plan_site.html">Plan du Site</a></li>
                         <li><a href="presse.html">Espace Presse</a></li>
                         <li><a href="recrutement.html">Carrières & Stages</a></li>
                     </ul>
